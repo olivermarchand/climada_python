@@ -36,7 +36,6 @@ d = Drought()
 """Set area in latitudinal longitudinal coordinates"""
 #d.set_area(latmin, lonmin, latmax, lonmax)
 
-
 """Set if non default parameters are used"""
 d.set_threshold(threshold)
 d.set_intensity_def(intensity_definition)
@@ -52,7 +51,7 @@ d.set_intensity_def(intensity_definition)
 new_haz = d.setup()
 
 """Plot intensity of one year event""" 
-new_haz.plot_intensity_drought(event='2003')
+# new_haz.plot_intensity_drought(event='2003')
 
 """Initialize Impact function"""
 dr_if = ImpactFuncSet()
@@ -61,7 +60,7 @@ if_def = IFDrought()
 #if_def.set_default()
 #if_def.set_default_sumthr()
 if_def.set_default_sum()
-dr_if.add_func(if_def)
+dr_if.append(if_def)
 
 """Initialize Exposure"""
 exposure_agrar = SpamAgrar()
@@ -79,4 +78,4 @@ imp_drought = Impact()
 imp_drought.calc(exposure_agrar, dr_if, new_haz)
 index_event_start = imp_drought.event_name.index('2003')
 damages_drought = np.asarray([imp_drought.at_event[index_event_start]])
-
+print(damages_drought)
