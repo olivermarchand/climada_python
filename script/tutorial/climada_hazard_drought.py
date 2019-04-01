@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 from climada.hazard.drought import Drought 
 
 from climada.entity.impact_funcs.drought import IFDrought
-from climada.entity import Entity
+# from climada.entity import Entity
 from climada.entity import ImpactFuncSet
 from climada.engine import Impact
 from climada.entity.exposures.spam_agrar import SpamAgrar
