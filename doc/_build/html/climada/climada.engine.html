@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>climada.engine package &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="climada.entity package" href="climada.entity.html" />
+    <link rel="prev" title="Software documentation per package" href="climada.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="climada.entity.html" title="climada.entity package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="climada.html" title="Software documentation per package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="climada.html" accesskey="U">Software documentation per package</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">climada.engine package</a><ul>
+<li><a class="reference internal" href="#module-climada.engine.impact">climada.engine.impact module</a></li>
+<li><a class="reference internal" href="#module-climada.engine.cost_benefit">climada.engine.cost_benefit module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="climada.html"
+                        title="previous chapter">Software documentation per package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="climada.entity.html"
+                        title="next chapter">climada.entity package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/climada/climada.engine.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="climada-engine-package">
+<h1>climada.engine package<a class="headerlink" href="#climada-engine-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-climada.engine.impact">
+<span id="climada-engine-impact-module"></span><h2>climada.engine.impact module<a class="headerlink" href="#module-climada.engine.impact" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="climada.engine.impact.Impact">
+<em class="property">class </em><code class="descclassname">climada.engine.impact.</code><code class="descname">Impact</code><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Impact definition. Compute from an entity (exposures and impact
+functions) and hazard.</p>
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.tag">
+<code class="descname">tag</code><a class="headerlink" href="#climada.engine.impact.Impact.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>dictionary of tags of exposures, impact functions set and
+hazard: {‘exp’: Tag(), ‘if_set’: Tag(), ‘haz’: TagHazard()}</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.event_id">
+<code class="descname">event_id</code><a class="headerlink" href="#climada.engine.impact.Impact.event_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>id (&gt;0) of each hazard event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.event_name">
+<code class="descname">event_name</code><a class="headerlink" href="#climada.engine.impact.Impact.event_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of each hazard event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.date">
+<code class="descname">date</code><a class="headerlink" href="#climada.engine.impact.Impact.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>date of events</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.coord_exp">
+<code class="descname">coord_exp</code><a class="headerlink" href="#climada.engine.impact.Impact.coord_exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>exposures coordinates [lat, lon] (in degrees)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.eai_exp">
+<code class="descname">eai_exp</code><a class="headerlink" href="#climada.engine.impact.Impact.eai_exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>expected annual impact for each exposure</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.at_event">
+<code class="descname">at_event</code><a class="headerlink" href="#climada.engine.impact.Impact.at_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>impact for each hazard event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.frequency">
+<code class="descname">frequency</code><a class="headerlink" href="#climada.engine.impact.Impact.frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>annual frequency of event</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.arrray</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.tot_value">
+<code class="descname">tot_value</code><a class="headerlink" href="#climada.engine.impact.Impact.tot_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>total exposure value affected</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.aai_agg">
+<code class="descname">aai_agg</code><a class="headerlink" href="#climada.engine.impact.Impact.aai_agg" title="Permalink to this definition">¶</a></dt>
+<dd><p>average annual impact (aggregated)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.unit">
+<code class="descname">unit</code><a class="headerlink" href="#climada.engine.impact.Impact.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>value unit used (given by exposures unit)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.Impact.imp_mat">
+<code class="descname">imp_mat</code><a class="headerlink" href="#climada.engine.impact.Impact.imp_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>matrix num_events x num_exp with impacts.
+only filled if save_mat is True in calc()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">sparse.csr_matrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empty initialization.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.calc_freq_curve">
+<code class="descname">calc_freq_curve</code><span class="sig-paren">(</span><em>return_per=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.calc_freq_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.calc_freq_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute impact exceedance frequency curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>return_per</strong> (<em>np.array, optional</em>) – return periods where to compute
+the exceedance impact. Use impact’s frequencies if not provided</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ImpactFreqCurve</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.calc">
+<code class="descname">calc</code><span class="sig-paren">(</span><em>exposures</em>, <em>impact_funcs</em>, <em>hazard</em>, <em>save_mat=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.calc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute impact of an hazard to exposures.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>exposures</strong> (<em>Exposures</em>) – exposures</li>
+<li><strong>impact_funcs</strong> (<em>ImpactFuncSet</em>) – impact functions</li>
+<li><strong>hazard</strong> (<em>Hazard</em>) – hazard</li>
+<li><strong>self_mat</strong> (<em>bool</em>) – self impact matrix: events x exposures</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Use Entity class:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">haz</span> <span class="o">=</span> <span class="n">Hazard</span><span class="p">(</span><span class="s1">&#39;TC&#39;</span><span class="p">)</span> <span class="c1"># Set hazard</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">haz</span><span class="o">.</span><span class="n">read_mat</span><span class="p">(</span><span class="n">HAZ_DEMO_MAT</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">haz</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ent</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">()</span> <span class="c1"># Load entity with default values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ent</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">ENT_TEMPLATE_XLS</span><span class="p">)</span> <span class="c1"># Set exposures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ent</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span> <span class="o">=</span> <span class="n">Impact</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span><span class="o">.</span><span class="n">calc</span><span class="p">(</span><span class="n">ent</span><span class="o">.</span><span class="n">exposures</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">impact_funcs</span><span class="p">,</span> <span class="n">haz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span><span class="o">.</span><span class="n">calc_freq_curve</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Specify only exposures and impact functions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">haz</span> <span class="o">=</span> <span class="n">Hazard</span><span class="p">(</span><span class="s1">&#39;TC&#39;</span><span class="p">)</span> <span class="c1"># Set hazard</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">haz</span><span class="o">.</span><span class="n">read_mat</span><span class="p">(</span><span class="n">HAZ_DEMO_MAT</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">haz</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">funcs</span> <span class="o">=</span> <span class="n">ImpactFuncSet</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">funcs</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">ENT_TEMPLATE_XLS</span><span class="p">)</span> <span class="c1"># Set impact functions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">funcs</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exp</span> <span class="o">=</span> <span class="n">Exposures</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">ENT_TEMPLATE_XLS</span><span class="p">))</span> <span class="c1"># Set exposures</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exp</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span> <span class="o">=</span> <span class="n">Impact</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span><span class="o">.</span><span class="n">calc</span><span class="p">(</span><span class="n">exp</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">haz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imp</span><span class="o">.</span><span class="n">aai_agg</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.plot_hexbin_eai_exposure">
+<code class="descname">plot_hexbin_eai_exposure</code><span class="sig-paren">(</span><em>mask=None</em>, <em>ignore_zero=True</em>, <em>pop_name=True</em>, <em>buffer=0.0</em>, <em>extend='neither'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.plot_hexbin_eai_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.plot_hexbin_eai_exposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot hexbin expected annual impact of each exposure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><dl class="first docutils">
+<dt><strong>mask</strong> (<em>np.array, optional</em>) – mask to apply to eai_exp plotted.</dt>
+<dd><ul class="first last">
+<li><strong>ignore_zero</strong> (<em>bool, optional</em>) – flag to indicate if zero and negative
+values are ignored in plot. Default: False</li>
+<li><strong>pop_name</strong> (<em>bool, optional</em>) – add names of the populated places</li>
+<li><strong>buffer</strong> (<em>float, optional</em>) – border to add to coordinates.
+Default: 1.0.</li>
+<li><strong>extend</strong> (<em>str, optional</em>) – extend border colorbar with arrows.
+[ ‘neither’ | ‘both’ | ‘min’ | ‘max’ ]</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for hexbin matplotlib function</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="last docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">matplotlib.figure.Figure, cartopy.mpl.geoaxes.GeoAxesSubplot</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.plot_scatter_eai_exposure">
+<code class="descname">plot_scatter_eai_exposure</code><span class="sig-paren">(</span><em>mask=None</em>, <em>ignore_zero=True</em>, <em>pop_name=True</em>, <em>buffer=0.0</em>, <em>extend='neither'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.plot_scatter_eai_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.plot_scatter_eai_exposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot scatter expected annual impact of each exposure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><dl class="first docutils">
+<dt><strong>mask</strong> (<em>np.array, optional</em>) – mask to apply to eai_exp plotted.</dt>
+<dd><ul class="first last">
+<li><strong>ignore_zero</strong> (<em>bool, optional</em>) – flag to indicate if zero and negative
+values are ignored in plot. Default: False</li>
+<li><strong>pop_name</strong> (<em>bool, optional</em>) – add names of the populated places</li>
+<li><strong>buffer</strong> (<em>float, optional</em>) – border to add to coordinates.
+Default: 1.0.</li>
+<li><strong>extend</strong> (<em>str, optional</em>) – extend border colorbar with arrows.
+[ ‘neither’ | ‘both’ | ‘min’ | ‘max’ ]</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for hexbin matplotlib function</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="last docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">matplotlib.figure.Figure, cartopy.mpl.geoaxes.GeoAxesSubplot</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.plot_raster_eai_exposure">
+<code class="descname">plot_raster_eai_exposure</code><span class="sig-paren">(</span><em>res=None</em>, <em>raster_res=None</em>, <em>save_tiff=None</em>, <em>raster_f=&lt;function Impact.&lt;lambda&gt;&gt;</em>, <em>label='value (log10)'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.plot_raster_eai_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.plot_raster_eai_exposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot raster expected annual impact of each exposure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first">
+<li><dl class="first docutils">
+<dt><strong>res</strong> (<em>float, optional</em>) – resolution of current data in units of latitude</dt>
+<dd><blockquote class="first">
+<div><p>and longitude, approximated if not provided.</p>
+</div></blockquote>
+<ul class="last simple">
+<li><strong>raster_res</strong> (<em>float, optional</em>) – desired resolution of the raster</li>
+<li><strong>save_tiff</strong> (<em>str, optional</em>) – file name to save the raster in tiff
+format, if provided</li>
+<li><strong>raster_f</strong> (<em>lambda function</em>) – transformation to use to data. Default:
+log10 adding 1.</li>
+<li><strong>label</strong> (<em>str</em>) – colorbar label</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for imshow matplotlib function</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="last docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">matplotlib.figure.Figure, cartopy.mpl.geoaxes.GeoAxesSubplot</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.plot_basemap_eai_exposure">
+<code class="descname">plot_basemap_eai_exposure</code><span class="sig-paren">(</span><em>mask=None</em>, <em>ignore_zero=False</em>, <em>pop_name=True</em>, <em>buffer=0.0</em>, <em>extend='neither'</em>, <em>zoom=10</em>, <em>url='http://tile.stamen.com/terrain/tileZ/tileX/tileY.png'</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.plot_basemap_eai_exposure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.plot_basemap_eai_exposure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot basemap expected annual impact of each exposure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><dl class="first docutils">
+<dt><strong>mask</strong> (<em>np.array, optional</em>) – mask to apply to eai_exp plotted.</dt>
+<dd><ul class="first last">
+<li><strong>ignore_zero</strong> (<em>bool, optional</em>) – flag to indicate if zero and negative
+values are ignored in plot. Default: False</li>
+<li><strong>pop_name</strong> (<em>bool, optional</em>) – add names of the populated places</li>
+<li><strong>buffer</strong> (<em>float, optional</em>) – border to add to coordinates. Default: 0.0.</li>
+<li><strong>extend</strong> (<em>str, optional</em>) – extend border colorbar with arrows.
+[ ‘neither’ | ‘both’ | ‘min’ | ‘max’ ]</li>
+<li><strong>zoom</strong> (<em>int, optional</em>) – zoom coefficient used in the satellite image</li>
+<li><strong>url</strong> (<em>str, optional</em>) – image source, e.g. ctx.sources.OSM_C</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for scatter matplotlib function, e.g.
+cmap=’Greys’. Default: ‘Wistia’</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="last docutils">
+<dt>Returns:</dt>
+<dd><p class="first last">matplotlib.figure.Figure, cartopy.mpl.geoaxes.GeoAxesSubplot</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.write_csv">
+<code class="descname">write_csv</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.write_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.write_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write data into csv file. imp_mat is not saved.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> (<em>str</em>) – absolute path of the file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.write_excel">
+<code class="descname">write_excel</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.write_excel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.write_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write data into Excel file. imp_mat is not saved.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> (<em>str</em>) – absolute path of the file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.write_sparse_csr">
+<code class="descname">write_sparse_csr</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.write_sparse_csr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.write_sparse_csr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write imp_mat matrix in numpy’s npz format.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.calc_impact_year_set">
+<code class="descname">calc_impact_year_set</code><span class="sig-paren">(</span><em>all_years=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.calc_impact_year_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.calc_impact_year_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate yearly impact from impact data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>all_years</strong> (<em>boolean</em>) – return values for all years between first and</li>
+<li><strong>last year with event, including years without any events.</strong></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Impact year set of type numpy.ndarray with summed impact per year.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="climada.engine.impact.Impact.read_sparse_csr">
+<em class="property">static </em><code class="descname">read_sparse_csr</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.read_sparse_csr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.read_sparse_csr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read imp_mat matrix from numpy’s npz format.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> (<em>str</em>) – file name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sparse.csr_matrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.read_csv">
+<code class="descname">read_csv</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.read_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.read_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read csv file containing impact data generated by write_csv.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> (<em>str</em>) – absolute path of the file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.Impact.read_excel">
+<code class="descname">read_excel</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#Impact.read_excel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.Impact.read_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read excel file containing impact data generated by write_excel.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> (<em>str</em>) – absolute path of the file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="climada.engine.impact.ImpactFreqCurve">
+<em class="property">class </em><code class="descclassname">climada.engine.impact.</code><code class="descname">ImpactFreqCurve</code><a class="reference internal" href="../_modules/climada/engine/impact.html#ImpactFreqCurve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Impact exceedence frequency curve.</p>
+<dl class="attribute">
+<dt id="climada.engine.impact.ImpactFreqCurve.tag">
+<code class="descname">tag</code><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>dictionary of tags of exposures, impact functions set and
+hazard: {‘exp’: Tag(), ‘if_set’: Tag(), ‘haz’: TagHazard()}</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.ImpactFreqCurve.return_per">
+<code class="descname">return_per</code><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.return_per" title="Permalink to this definition">¶</a></dt>
+<dd><p>return period</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.ImpactFreqCurve.impact">
+<code class="descname">impact</code><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.impact" title="Permalink to this definition">¶</a></dt>
+<dd><p>impact exceeding frequency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.ImpactFreqCurve.unit">
+<code class="descname">unit</code><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>value unit used (given by exposures unit)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.impact.ImpactFreqCurve.label">
+<code class="descname">label</code><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.label" title="Permalink to this definition">¶</a></dt>
+<dd><p>string describing source data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.ImpactFreqCurve.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#ImpactFreqCurve.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.ImpactFreqCurve.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#ImpactFreqCurve.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot impact frequency curve.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">matplotlib.figure.Figure, [matplotlib.axes._subplots.AxesSubplot]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.impact.ImpactFreqCurve.plot_compare">
+<code class="descname">plot_compare</code><span class="sig-paren">(</span><em>ifc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/impact.html#ImpactFreqCurve.plot_compare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.impact.ImpactFreqCurve.plot_compare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot current and input impact frequency curves in a figure.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">matplotlib.figure.Figure, [matplotlib.axes._subplots.AxesSubplot]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.engine.cost_benefit">
+<span id="climada-engine-cost-benefit-module"></span><h2>climada.engine.cost_benefit module<a class="headerlink" href="#module-climada.engine.cost_benefit" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.engine.cost_benefit.risk_aai_agg">
+<code class="descclassname">climada.engine.cost_benefit.</code><code class="descname">risk_aai_agg</code><span class="sig-paren">(</span><em>impact</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#risk_aai_agg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.risk_aai_agg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Risk measurement as average annual impact aggregated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>impact</strong> (<em>Impact</em>) – an Impact instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.engine.cost_benefit.risk_rp_100">
+<code class="descclassname">climada.engine.cost_benefit.</code><code class="descname">risk_rp_100</code><span class="sig-paren">(</span><em>impact</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#risk_rp_100"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.risk_rp_100" title="Permalink to this definition">¶</a></dt>
+<dd><p>Risk measurement as exceedance impact at 100 years return period.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>impact</strong> (<em>Impact</em>) – an Impact instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.engine.cost_benefit.risk_rp_250">
+<code class="descclassname">climada.engine.cost_benefit.</code><code class="descname">risk_rp_250</code><span class="sig-paren">(</span><em>impact</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#risk_rp_250"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.risk_rp_250" title="Permalink to this definition">¶</a></dt>
+<dd><p>Risk measurement as exceedance impact at 250 years return period.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>impact</strong> (<em>Impact</em>) – an Impact instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="climada.engine.cost_benefit.CostBenefit">
+<em class="property">class </em><code class="descclassname">climada.engine.cost_benefit.</code><code class="descname">CostBenefit</code><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Impact definition. Compute from an entity (exposures and impact
+functions) and hazard.</p>
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.present_year">
+<code class="descname">present_year</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.present_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>present reference year</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.future_year">
+<code class="descname">future_year</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.future_year" title="Permalink to this definition">¶</a></dt>
+<dd><p>future year</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.tot_climate_risk">
+<code class="descname">tot_climate_risk</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.tot_climate_risk" title="Permalink to this definition">¶</a></dt>
+<dd><p>total climate risk without measures</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.unit">
+<code class="descname">unit</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>unit used for impact</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.color_rgb">
+<code class="descname">color_rgb</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.color_rgb" title="Permalink to this definition">¶</a></dt>
+<dd><p>color code RGB for each measure.
+Key: measure name (‘no measure’ used for case without measure),
+Value: np.array</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.benefit">
+<code class="descname">benefit</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.benefit" title="Permalink to this definition">¶</a></dt>
+<dd><p>benefit of each measure. Key: measure name, Value:
+float benefit</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.cost_ben_ratio">
+<code class="descname">cost_ben_ratio</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.cost_ben_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>cost benefit ratio of each measure. Key: measure
+name, Value: float cost benefit ratio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.imp_meas_future">
+<code class="descname">imp_meas_future</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.imp_meas_future" title="Permalink to this definition">¶</a></dt>
+<dd><p>impact of each measure at future or default.
+Key: measure name (‘no measure’ used for case without measure),
+Value: dict with:</p>
+<blockquote>
+<div><blockquote>
+<div>‘cost’ (float): cost measure,
+‘risk’ (float): risk measurement,
+‘risk_transf’ (float): annual expected risk transfer,
+‘efc’  (ImpactFreqCurve): impact exceedance freq</div></blockquote>
+<p>(optional)   ‘impact’ (Impact): impact instance</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.engine.cost_benefit.CostBenefit.imp_meas_present">
+<code class="descname">imp_meas_present</code><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.imp_meas_present" title="Permalink to this definition">¶</a></dt>
+<dd><p>impact of each measure at present.
+Key: measure name (‘no measure’ used for case without measure),
+Value: dict with:</p>
+<blockquote>
+<div><blockquote>
+<div>‘cost’ (float): cost measure,
+‘risk’ (float): risk measurement,
+‘risk_transf’ (float): annual expected risk transfer,
+‘efc’  (ImpactFreqCurve): impact exceedance freq</div></blockquote>
+<p>(optional)   ‘impact’ (Impact): impact instance</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.cost_benefit.CostBenefit.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initilization</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.cost_benefit.CostBenefit.calc">
+<code class="descname">calc</code><span class="sig-paren">(</span><em>hazard</em>, <em>entity</em>, <em>haz_future=None</em>, <em>ent_future=None</em>, <em>future_year=2050</em>, <em>risk_func=&lt;function risk_aai_agg&gt;</em>, <em>imp_time_depen=1</em>, <em>save_imp=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit.calc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cost-benefit ratio for every measure provided current
+and future conditions. Present and future measures need to have the same
+name. The measures costs need to be discounted by the user.
+If present and future entity provided, only the costs of the measures
+of the future and the discount rates of the present will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hazard</strong> (<em>Hazard</em>) – hazard</li>
+<li><strong>entity</strong> (<em>Entity</em>) – entity</li>
+<li><strong>haz_future</strong> (<em>Hazard</em>) – hazard in the future (future year provided at
+ent_future)</li>
+<li><strong>ent_future</strong> (<em>Entity</em>) – entity in the future</li>
+<li><strong>future_year</strong> (<em>int</em>) – future year to consider if no ent_future provided</li>
+<li><strong>risk_func</strong> (<em>func, optional</em>) – function describing risk measure given
+an Impact. Default: average annual impact (aggregated).</li>
+<li><strong>imp_time_depen</strong> (<em>float, optional</em>) – parameter which represent time
+evolution of impact. Default: 1 (linear).</li>
+<li><strong>save_imp</strong> (<em>bool, optional</em>) – activate if Impact of each measure is
+saved. Default: False.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.cost_benefit.CostBenefit.plot_cost_benefit">
+<code class="descname">plot_cost_benefit</code><span class="sig-paren">(</span><em>cb_list=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit.plot_cost_benefit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.plot_cost_benefit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot cost-benefit graph. Call after calc().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cb_list</strong> (<em>lsit(CostBenefit), optional</em>) – if other CostBenefit
+provided, overlay them all. Used for uncertainty visualization.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">matplotlib.figure.Figure, matplotlib.axes._subplots.AxesSubplot</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.cost_benefit.CostBenefit.plot_event_view">
+<code class="descname">plot_event_view</code><span class="sig-paren">(</span><em>return_per=(10</em>, <em>25</em>, <em>100)</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit.plot_event_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.plot_event_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot averted damages for return periods. Call after calc().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">matplotlib.figure.Figure, matplotlib.axes._subplots.AxesSubplot</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.cost_benefit.CostBenefit.plot_waterfall">
+<code class="descname">plot_waterfall</code><span class="sig-paren">(</span><em>hazard</em>, <em>entity</em>, <em>haz_future</em>, <em>ent_future</em>, <em>risk_func=&lt;function risk_aai_agg&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit.plot_waterfall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.plot_waterfall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot waterfall graph with given risk metric. Can be called before
+and after calc().</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>hazard</strong> (<em>Hazard</em>) – hazard</li>
+<li><strong>entity</strong> (<em>Entity</em>) – entity</li>
+<li><strong>haz_future</strong> (<em>Hazard</em>) – hazard in the future (future year provided at
+ent_future)</li>
+<li><strong>ent_future</strong> (<em>Entity</em>) – entity in the future</li>
+<li><strong>risk_func</strong> (<em>func, optional</em>) – function describing risk measure given
+an Impact. Default: average annual impact (aggregated).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">matplotlib.figure.Figure, matplotlib.axes._subplots.AxesSubplot</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.engine.cost_benefit.CostBenefit.plot_waterfall_accumulated">
+<code class="descname">plot_waterfall_accumulated</code><span class="sig-paren">(</span><em>hazard</em>, <em>entity</em>, <em>haz_future</em>, <em>ent_future</em>, <em>risk_func=&lt;function risk_aai_agg&gt;</em>, <em>imp_time_depen=1</em>, <em>plot_arrow=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/engine/cost_benefit.html#CostBenefit.plot_waterfall_accumulated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.engine.cost_benefit.CostBenefit.plot_waterfall_accumulated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot waterfall graph with accumulated values from present to future
+year. Call after calc(). Provide same risk_func and imp_time_depen as
+in calc.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>hazard</strong> (<em>Hazard</em>) – hazard</li>
+<li><strong>entity</strong> (<em>Entity</em>) – entity</li>
+<li><strong>haz_future</strong> (<em>Hazard</em>) – hazard in the future (future year provided at
+ent_future)</li>
+<li><strong>ent_future</strong> (<em>Entity</em>) – entity in the future</li>
+<li><strong>risk_func</strong> (<em>func, optional</em>) – function describing risk measure given
+an Impact. Default: average annual impact (aggregated).</li>
+<li><strong>imp_time_depen</strong> (<em>float, optional</em>) – parameter which represent time
+evolution of impact. Default: 1 (linear).</li>
+<li><strong>plot_arrow</strong> (<em>bool, optional</em>) – plot adaptation arrow</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">matplotlib.figure.Figure, matplotlib.axes._subplots.AxesSubplot</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="climada.entity.html" title="climada.entity package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="climada.html" title="Software documentation per package"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="climada.html" >Software documentation per package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

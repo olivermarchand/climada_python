@@ -1,0 +1,1807 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Fast and basic Python introduction &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Fast and basic Python introduction</a><ul>
+<li><a class="reference internal" href="#&nbsp;Numbers-and-strings">&nbsp;Numbers and strings</a></li>
+<li><a class="reference internal" href="#Lists">Lists</a></li>
+<li><a class="reference internal" href="#Tuples">Tuples</a></li>
+<li><a class="reference internal" href="#&nbsp;Sets">&nbsp;Sets</a></li>
+<li><a class="reference internal" href="#Dictionaries">Dictionaries</a></li>
+<li><a class="reference internal" href="#Functions">Functions</a><ul>
+<li><a class="reference internal" href="#Default-argument-values:">Default argument values:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Objects">Objects</a><ul>
+<li><a class="reference internal" href="#Inheritance:">Inheritance:</a></li>
+<li><a class="reference internal" href="#Private-Variables-and-Methods:">Private Variables and Methods:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/0_intro_python.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Fast-and-basic-Python-introduction">
+<h1>Fast and basic Python introduction<a class="headerlink" href="#Fast-and-basic-Python-introduction" title="Permalink to this headline">¶</a></h1>
+<p>Prepared by G. Aznar Siguan</p>
+<p>Most of the examples come from the official Python tutorial: <a class="reference external" href="https://docs.python.org/3/tutorial/">https://docs.python.org/3/tutorial/</a></p>
+<div class="section" id="&nbsp;Numbers-and-strings">
+<h2>&nbsp;Numbers and strings<a class="headerlink" href="# Numbers-and-strings" title="Permalink to this headline">¶</a></h2>
+<p>The operators +, -, * and / work just like in most other languages:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Addition: 2 + 2 =&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Substraction: 50 - 5*6 =&#39;</span><span class="p">,</span> <span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Use of parenthesis: (50 - 5*6) / 4 =&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Classic division returns a float: 17 / 3 =&#39;</span><span class="p">,</span> <span class="mi">17</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Floor division discards the fractional part: 17 // 3 =&#39;</span><span class="p">,</span> <span class="mi">17</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">% o</span><span class="s1">perator returns the remainder of the division: 17 % 3 =&#39;</span><span class="p">,</span> <span class="mi">17</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Result * divisor + remainder: 5 * 3 + 2 =&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;5 squared: 5 ** 2 =&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;2 to the power of 7: 2 ** 7 =&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Addition: 2 + 2 = 4
+Substraction: 50 - 5*6 = 20
+Use of parenthesis: (50 - 5*6) / 4 = 5.0
+Classic division returns a float: 17 / 3 = 5.666666666666667
+Floor division discards the fractional part: 17 // 3 = 5
+The % operator returns the remainder of the division: 17 % 3 = 2
+Result * divisor + remainder: 5 * 3 + 2 = 17
+5 squared: 5 ** 2 = 25
+2 to the power of 7: 2 ** 7 = 128
+</pre></div></div>
+</div>
+<p>The integer numbers (e.g. 2, 4, 20) have type int, the ones with a fractional part (e.g. 5.0, 1.6) have type float. Operators with mixed type operands convert the integer operand to floating point:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tax</span> <span class="o">=</span> <span class="mf">12.5</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">price</span> <span class="o">=</span> <span class="mf">100.50</span>
+<span class="n">price</span> <span class="o">*</span> <span class="n">tax</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>12.5625
+</pre></div>
+</div>
+</div>
+<p>Strings can be enclosed in single quotes (‘…’) or double quotes (“…”) with the same result. &nbsp;can be used to escape quotes.</p>
+<p>If you don’t want characters prefaced by &nbsp;to be interpreted as special characters, you can use raw strings by adding an r before the first quote.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;spam eggs&#39;</span><span class="p">)</span>  <span class="c1"># single quotes</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;doesn</span><span class="se">\&#39;</span><span class="s1">t&#39;</span><span class="p">)</span>   <span class="c1"># use \&#39; to escape the single quote...</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;doesn&#39;t&quot;</span><span class="p">)</span>    <span class="c1"># ...or use double quotes instead</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;&quot;Yes,&quot; he said.&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">Yes,</span><span class="se">\&quot;</span><span class="s2"> he said.&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; she said.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+spam eggs
+doesn&#39;t
+doesn&#39;t
+&#34;Yes,&#34; he said.
+&#34;Yes,&#34; he said.
+&#34;Isn&#39;t,&#34; she said.
+</pre></div></div>
+</div>
+<p>Strings can be indexed (subscripted), with the first character having index 0.</p>
+<p>Indices may also be negative numbers, to start counting from the right. Note that since -0 is the same as 0, negative indices start from -1.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;word = &#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Character in position 0: word[0] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Character in position 5: word[5] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Last character: word[-1] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Second-last character: word[-2] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;word[-6] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+word =  Python
+Character in position 0: word[0] = P
+Character in position 5: word[5] = n
+Last character: word[-1] = n
+Second-last character: word[-2] = o
+word[-6] = P
+</pre></div></div>
+</div>
+<p>In addition to indexing, slicing is also supported. While indexing is used to obtain individual characters, slicing allows you to obtain substring:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Characters from position 0 (included) to 2 (excluded): word[0:2] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Characters from position 2 (included) to 5 (excluded): word[2:5] =&#39;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Characters from position 0 (included) to 2 (excluded): word[0:2] = Py
+Characters from position 2 (included) to 5 (excluded): word[2:5] = tho
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Lists">
+<h2>Lists<a class="headerlink" href="#Lists" title="Permalink to this headline">¶</a></h2>
+<p>Lists can be written as a list of comma-separated values (items) between square brackets. Lists might contain items of different types, but usually the items all have the same type.</p>
+<p>Like strings (and all other built-in sequence type), lists can be indexed and sliced:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;squares: &#39;</span><span class="p">,</span> <span class="n">squares</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Indexing returns the item: squares[0]:&#39;</span><span class="p">,</span> <span class="n">squares</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;squares[-1]:&#39;</span><span class="p">,</span> <span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Slicing returns a new list: squares[-3:]:&#39;</span><span class="p">,</span> <span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;squares[:]:&#39;</span><span class="p">,</span> <span class="n">squares</span><span class="p">[:])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+squares:  [1, 4, 9, 16, 25]
+Indexing returns the item: squares[0]: 1
+squares[-1]: 25
+Slicing returns a new list: squares[-3:]: [9, 16, 25]
+squares[:]: [1, 4, 9, 16, 25]
+</pre></div></div>
+</div>
+<p>Lists also support operations like concatenation:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">squares</span> <span class="o">+</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+</pre></div>
+</div>
+</div>
+<p>Unlike strings, which are immutable, lists are a mutable type, i.e. it is possible to change their content:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">cubes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">125</span><span class="p">]</span>  <span class="c1"># something&#39;s wrong here</span>
+<span class="n">cubes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">64</span>  <span class="c1"># replace the wrong value</span>
+<span class="n">cubes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>  <span class="c1"># add the cube of 6</span>
+<span class="n">cubes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># and the cube of 7</span>
+<span class="n">cubes</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[1, 8, 27, 64, 125, 216, 343]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Try to modify a character of a string</span>
+<span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+<span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;p&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-9-7943b71ff912&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Try to modify a character of a string</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> word <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;Python&#39;</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>word<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;p&#39;</span>
+
+<span class="ansi-red-fg">TypeError</span>: &#39;str&#39; object does not support item assignment
+</pre></div></div>
+</div>
+<p>List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable, or to create a subsequence of those elements that satisfy a certain condition.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">squares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">squares</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># lambda functions: functions that are not bound to a name, e.g lambda x: x**2</span>
+<span class="c1"># Map applies a function to all the items in an input_list: map(function_to_apply, list_of_inputs)</span>
+<span class="n">squares</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+<span class="n">squares</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="n">squares</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Tuples">
+<h2>Tuples<a class="headerlink" href="#Tuples" title="Permalink to this headline">¶</a></h2>
+<p>A tuple consists of a number of values separated by commas, for instance:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t</span> <span class="o">=</span> <span class="mi">12345</span><span class="p">,</span> <span class="mi">54321</span><span class="p">,</span> <span class="s1">&#39;hello!&#39;</span>
+<span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>12345
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(12345, 54321, &#39;hello!&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Tuples may be nested:</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">u</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>((12345, 54321, &#39;hello!&#39;), (1, 2, 3, 4, 5))
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Tuples are immutable:</span>
+<span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">88888</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-16-9e19cce22619&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Tuples are immutable:</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>t<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">88888</span>
+
+<span class="ansi-red-fg">TypeError</span>: &#39;tuple&#39; object does not support item assignment
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># but they can contain mutable objects:</span>
+<span class="n">v</span> <span class="o">=</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>([1, 2, 3], [3, 2, 1])
+</pre></div>
+</div>
+</div>
+<p>Tuples are immutable, and usually contain a heterogeneous sequence of elements that are accessed via unpacking or indexing. Lists are mutable, and their elements are usually homogeneous and are accessed by iterating over the list.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">t</span> <span class="o">=</span> <span class="mi">12345</span><span class="p">,</span> <span class="mi">54321</span><span class="p">,</span> <span class="s1">&#39;hello!&#39;</span> <span class="c1"># tuple packing</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">t</span> <span class="c1"># tuple unpacking</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(12345, 54321, &#39;hello!&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="&nbsp;Sets">
+<h2>&nbsp;Sets<a class="headerlink" href="# Sets" title="Permalink to this headline">¶</a></h2>
+<p>A set is an unordered collection with no duplicate elements. Basic uses include membership testing and eliminating duplicate entries. Set objects also support mathematical operations like union, intersection, difference, and symmetric difference.</p>
+<p>Curly braces or the set() function can be used to create sets.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">basket</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;pear&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">}</span>
+<span class="n">basket</span> <span class="c1"># show that duplicates have been removed</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;apple&#39;, &#39;banana&#39;, &#39;orange&#39;, &#39;pear&#39;}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s1">&#39;orange&#39;</span> <span class="ow">in</span> <span class="n">basket</span> <span class="c1"># fast membership testing</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>True
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s1">&#39;crabgrass&#39;</span> <span class="ow">in</span> <span class="n">basket</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>False
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Demonstrate set operations on unique letters from two words</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s1">&#39;abracadabra&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="s1">&#39;alacazam&#39;</span><span class="p">)</span>
+<span class="n">a</span> <span class="c1"># unique letters in a</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;r&#39;}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="c1"># letters in a but not in b</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;b&#39;, &#39;d&#39;, &#39;r&#39;}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">|</span> <span class="n">b</span> <span class="c1"># letters in a or b or both</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;l&#39;, &#39;m&#39;, &#39;r&#39;, &#39;z&#39;}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span> <span class="c1"># letters in both a and b</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;a&#39;, &#39;c&#39;}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">^</span> <span class="n">b</span> <span class="c1"># letters in a or b but not both</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;b&#39;, &#39;d&#39;, &#39;l&#39;, &#39;m&#39;, &#39;r&#39;, &#39;z&#39;}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># check set documentation</span>
+<span class="n">help</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Help on class set in module builtins:
+
+class set(object)
+ |  set() -&gt; new empty set object
+ |  set(iterable) -&gt; new set object
+ |
+ |  Build an unordered collection of unique elements.
+ |
+ |  Methods defined here:
+ |
+ |  __and__(self, value, /)
+ |      Return self&amp;value.
+ |
+ |  __contains__(...)
+ |      x.__contains__(y) &lt;==&gt; y in x.
+ |
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |
+ |  __ge__(self, value, /)
+ |      Return self&gt;=value.
+ |
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |
+ |  __gt__(self, value, /)
+ |      Return self&gt;value.
+ |
+ |  __iand__(self, value, /)
+ |      Return self&amp;=value.
+ |
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __ior__(self, value, /)
+ |      Return self|=value.
+ |
+ |  __isub__(self, value, /)
+ |      Return self-=value.
+ |
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |
+ |  __ixor__(self, value, /)
+ |      Return self^=value.
+ |
+ |  __le__(self, value, /)
+ |      Return self&lt;=value.
+ |
+ |  __len__(self, /)
+ |      Return len(self).
+ |
+ |  __lt__(self, value, /)
+ |      Return self&lt;value.
+ |
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |
+ |  __or__(self, value, /)
+ |      Return self|value.
+ |
+ |  __rand__(self, value, /)
+ |      Return value&amp;self.
+ |
+ |  __reduce__(...)
+ |      Return state information for pickling.
+ |
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |
+ |  __ror__(self, value, /)
+ |      Return value|self.
+ |
+ |  __rsub__(self, value, /)
+ |      Return value-self.
+ |
+ |  __rxor__(self, value, /)
+ |      Return value^self.
+ |
+ |  __sizeof__(...)
+ |      S.__sizeof__() -&gt; size of S in memory, in bytes
+ |
+ |  __sub__(self, value, /)
+ |      Return self-value.
+ |
+ |  __xor__(self, value, /)
+ |      Return self^value.
+ |
+ |  add(...)
+ |      Add an element to a set.
+ |
+ |      This has no effect if the element is already present.
+ |
+ |  clear(...)
+ |      Remove all elements from this set.
+ |
+ |  copy(...)
+ |      Return a shallow copy of a set.
+ |
+ |  difference(...)
+ |      Return the difference of two or more sets as a new set.
+ |
+ |      (i.e. all elements that are in this set but not the others.)
+ |
+ |  difference_update(...)
+ |      Remove all elements of another set from this set.
+ |
+ |  discard(...)
+ |      Remove an element from a set if it is a member.
+ |
+ |      If the element is not a member, do nothing.
+ |
+ |  intersection(...)
+ |      Return the intersection of two sets as a new set.
+ |
+ |      (i.e. all elements that are in both sets.)
+ |
+ |  intersection_update(...)
+ |      Update a set with the intersection of itself and another.
+ |
+ |  isdisjoint(...)
+ |      Return True if two sets have a null intersection.
+ |
+ |  issubset(...)
+ |      Report whether another set contains this set.
+ |
+ |  issuperset(...)
+ |      Report whether this set contains another set.
+ |
+ |  pop(...)
+ |      Remove and return an arbitrary set element.
+ |      Raises KeyError if the set is empty.
+ |
+ |  remove(...)
+ |      Remove an element from a set; it must be a member.
+ |
+ |      If the element is not a member, raise a KeyError.
+ |
+ |  symmetric_difference(...)
+ |      Return the symmetric difference of two sets as a new set.
+ |
+ |      (i.e. all elements that are in exactly one of the sets.)
+ |
+ |  symmetric_difference_update(...)
+ |      Update a set with the symmetric difference of itself and another.
+ |
+ |  union(...)
+ |      Return the union of sets as a new set.
+ |
+ |      (i.e. all elements that are in either set.)
+ |
+ |  update(...)
+ |      Update a set with the union of itself and others.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  __hash__ = None
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># check which methods can be applied on set</span>
+<span class="nb">dir</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;__and__&#39;,
+ &#39;__class__&#39;,
+ &#39;__contains__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__iand__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__ior__&#39;,
+ &#39;__isub__&#39;,
+ &#39;__iter__&#39;,
+ &#39;__ixor__&#39;,
+ &#39;__le__&#39;,
+ &#39;__len__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__or__&#39;,
+ &#39;__rand__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__ror__&#39;,
+ &#39;__rsub__&#39;,
+ &#39;__rxor__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__sub__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;__xor__&#39;,
+ &#39;add&#39;,
+ &#39;clear&#39;,
+ &#39;copy&#39;,
+ &#39;difference&#39;,
+ &#39;difference_update&#39;,
+ &#39;discard&#39;,
+ &#39;intersection&#39;,
+ &#39;intersection_update&#39;,
+ &#39;isdisjoint&#39;,
+ &#39;issubset&#39;,
+ &#39;issuperset&#39;,
+ &#39;pop&#39;,
+ &#39;remove&#39;,
+ &#39;symmetric_difference&#39;,
+ &#39;symmetric_difference_update&#39;,
+ &#39;union&#39;,
+ &#39;update&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Define a new set and try some set methods (freestyle)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Dictionaries">
+<h2>Dictionaries<a class="headerlink" href="#Dictionaries" title="Permalink to this headline">¶</a></h2>
+<p>Unlike sequences, which are indexed by a range of numbers, dictionaries are indexed by keys, which can be any immutable type; strings and numbers can always be keys.</p>
+<p>It is best to think of a dictionary as an unordered set of key: value pairs, with the requirement that the keys are unique (within one dictionary). A pair of braces creates an empty dictionary: {}. Placing a comma-separated list of key:value pairs within the braces adds initial key:value pairs to the dictionary; this is also the way dictionaries are written on output.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tel</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;jack&#39;</span><span class="p">:</span> <span class="mi">4098</span><span class="p">,</span> <span class="s1">&#39;sape&#39;</span><span class="p">:</span> <span class="mi">4139</span><span class="p">}</span>
+<span class="n">tel</span><span class="p">[</span><span class="s1">&#39;guido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
+<span class="n">tel</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;jack&#39;: 4098, &#39;sape&#39;: 4139, &#39;guido&#39;: 4127}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tel</span><span class="p">[</span><span class="s1">&#39;jack&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>4098
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">del</span> <span class="n">tel</span><span class="p">[</span><span class="s1">&#39;sape&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tel</span><span class="p">[</span><span class="s1">&#39;irv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4127</span>
+<span class="n">tel</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>{&#39;jack&#39;: 4098, &#39;guido&#39;: 4127, &#39;irv&#39;: 4127}
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">list</span><span class="p">(</span><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;jack&#39;, &#39;guido&#39;, &#39;irv&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">sorted</span><span class="p">(</span><span class="n">tel</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;guido&#39;, &#39;irv&#39;, &#39;jack&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s1">&#39;guido&#39;</span> <span class="ow">in</span> <span class="n">tel</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>True
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s1">&#39;jack&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tel</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Functions">
+<h2>Functions<a class="headerlink" href="#Functions" title="Permalink to this headline">¶</a></h2>
+<p>We can create a function that writes the Fibonacci series to an arbitrary boundary:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    <span class="c1"># write Fibonacci series up to n</span>
+     <span class="sd">&quot;&quot;&quot;Print a Fibonacci series up to n.&quot;&quot;&quot;</span>
+     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>            <span class="c1"># two assignments in one line</span>
+     <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+         <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>      <span class="c1"># two assignments in one line</span>
+     <span class="k">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Now call the function we just defined:</span>
+<span class="n">fib</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+</pre></div></div>
+</div>
+<p>The value of the function name has a type that is recognized by the interpreter as a user-defined function. This value can be assigned to another name which can then also be used as a function. This serves as a general renaming mechanism:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">print</span><span class="p">(</span><span class="n">fib</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">fib</span><span class="p">))</span> <span class="c1"># function type</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">fib</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;function fib at 0x10f4f3598&gt;
+&lt;class &#39;function&#39;&gt;
+0 1 1 2 3 5 8 13 21 34 55 89
+None
+</pre></div></div>
+</div>
+<p>Be careful when using mutable types as inputs in functions, as they might be modified:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">dummy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">x</span>
+
+<span class="n">xx</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;xx before function call: &#39;</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
+<span class="n">dummy</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;xx after function call: &#39;</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span>
+
+<span class="n">yy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;yy before function call: &#39;</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">dummy</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;yy after function call: &#39;</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+xx before function call:  5
+xx after function call:  5
+yy before function call:  [5]
+yy after function call:  [5, 5]
+</pre></div></div>
+</div>
+<div class="section" id="Default-argument-values:">
+<h3>Default argument values:<a class="headerlink" href="#Default-argument-values:" title="Permalink to this headline">¶</a></h3>
+<p>The most useful form is to specify a default value for one or more arguments. This creates a function that can be called with fewer arguments than it is defined to allow. For example:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">ask_ok</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">reminder</span><span class="o">=</span><span class="s1">&#39;Please try again!&#39;</span><span class="p">):</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ok</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;ye&#39;</span><span class="p">,</span> <span class="s1">&#39;yes&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">ok</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">,</span> <span class="s1">&#39;nop&#39;</span><span class="p">,</span> <span class="s1">&#39;nope&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="n">retries</span> <span class="o">=</span> <span class="n">retries</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">retries</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;invalid user response&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">reminder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#This function can be called in several ways:</span>
+
+<span class="c1">#giving only the mandatory argument:</span>
+<span class="n">ask_ok</span><span class="p">(</span><span class="s1">&#39;Do you really want to quit?&#39;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-43-adb7e24961f1&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg">#giving only the mandatory argument:</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>ask_ok<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Do you really want to quit?&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-42-16d7c37266ff&gt;</span> in <span class="ansi-cyan-fg">ask_ok</span><span class="ansi-blue-fg">(prompt, retries, reminder)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> ask_ok<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">,</span> retries<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">,</span> reminder<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;Please try again!&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">         </span>ok <span class="ansi-blue-fg">=</span> input<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>         <span class="ansi-green-fg">if</span> ok <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;y&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ye&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;yes&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>             <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/climada_docs/lib/python3.6/site-packages/ipykernel/kernelbase.py</span> in <span class="ansi-cyan-fg">raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-intense-fg ansi-bold">    846</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_allow_stdin<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    847</span>             raise StdinNotImplementedError(
+<span class="ansi-green-fg">--&gt; 848</span><span class="ansi-red-fg">                 </span><span class="ansi-blue-fg">&#34;raw_input was called, but this frontend does not support input requests.&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    849</span>             )
+<span class="ansi-green-intense-fg ansi-bold">    850</span>         return self._input_request(str(prompt),
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># giving one of the optional arguments:</span>
+<span class="n">ask_ok</span><span class="p">(</span><span class="s1">&#39;OK to overwrite the file?&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-44-cfbe16dfa3d0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># giving one of the optional arguments:</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>ask_ok<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;OK to overwrite the file?&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-42-16d7c37266ff&gt;</span> in <span class="ansi-cyan-fg">ask_ok</span><span class="ansi-blue-fg">(prompt, retries, reminder)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> ask_ok<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">,</span> retries<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">,</span> reminder<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;Please try again!&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">         </span>ok <span class="ansi-blue-fg">=</span> input<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>         <span class="ansi-green-fg">if</span> ok <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;y&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ye&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;yes&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>             <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/climada_docs/lib/python3.6/site-packages/ipykernel/kernelbase.py</span> in <span class="ansi-cyan-fg">raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-intense-fg ansi-bold">    846</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_allow_stdin<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    847</span>             raise StdinNotImplementedError(
+<span class="ansi-green-fg">--&gt; 848</span><span class="ansi-red-fg">                 </span><span class="ansi-blue-fg">&#34;raw_input was called, but this frontend does not support input requests.&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    849</span>             )
+<span class="ansi-green-intense-fg ansi-bold">    850</span>         return self._input_request(str(prompt),
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># or even giving all arguments:</span>
+<span class="n">ask_ok</span><span class="p">(</span><span class="s1">&#39;OK to overwrite the file?&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Come on, only yes or no!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-45-ac003532eb1d&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># or even giving all arguments:</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>ask_ok<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;OK to overwrite the file?&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Come on, only yes or no!&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-42-16d7c37266ff&gt;</span> in <span class="ansi-cyan-fg">ask_ok</span><span class="ansi-blue-fg">(prompt, retries, reminder)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> ask_ok<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">,</span> retries<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">,</span> reminder<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;Please try again!&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">         </span>ok <span class="ansi-blue-fg">=</span> input<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>         <span class="ansi-green-fg">if</span> ok <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;y&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ye&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;yes&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>             <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/climada_docs/lib/python3.6/site-packages/ipykernel/kernelbase.py</span> in <span class="ansi-cyan-fg">raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-intense-fg ansi-bold">    846</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_allow_stdin<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    847</span>             raise StdinNotImplementedError(
+<span class="ansi-green-fg">--&gt; 848</span><span class="ansi-red-fg">                 </span><span class="ansi-blue-fg">&#34;raw_input was called, but this frontend does not support input requests.&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    849</span>             )
+<span class="ansi-green-intense-fg ansi-bold">    850</span>         return self._input_request(str(prompt),
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div></div>
+</div>
+<p>Functions can also be called using keyword arguments of the form kwarg=value:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ask_ok</span><span class="p">(</span><span class="s1">&#39;OK to overwrite the file?&#39;</span><span class="p">,</span> <span class="n">reminder</span><span class="o">=</span><span class="s1">&#39;Come on, only yes or no!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StdinNotImplementedError</span>                  Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-46-37caa1aff9a8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>ask_ok<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;OK to overwrite the file?&#39;</span><span class="ansi-blue-fg">,</span> reminder<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;Come on, only yes or no!&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-42-16d7c37266ff&gt;</span> in <span class="ansi-cyan-fg">ask_ok</span><span class="ansi-blue-fg">(prompt, retries, reminder)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">def</span> ask_ok<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">,</span> retries<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">,</span> reminder<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;Please try again!&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg">         </span>ok <span class="ansi-blue-fg">=</span> input<span class="ansi-blue-fg">(</span>prompt<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>         <span class="ansi-green-fg">if</span> ok <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;y&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;ye&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;yes&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>             <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/climada_docs/lib/python3.6/site-packages/ipykernel/kernelbase.py</span> in <span class="ansi-cyan-fg">raw_input</span><span class="ansi-blue-fg">(self, prompt)</span>
+<span class="ansi-green-intense-fg ansi-bold">    846</span>         <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_allow_stdin<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    847</span>             raise StdinNotImplementedError(
+<span class="ansi-green-fg">--&gt; 848</span><span class="ansi-red-fg">                 </span><span class="ansi-blue-fg">&#34;raw_input was called, but this frontend does not support input requests.&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    849</span>             )
+<span class="ansi-green-intense-fg ansi-bold">    850</span>         return self._input_request(str(prompt),
+
+<span class="ansi-red-fg">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div></div>
+</div>
+<p>Default <code class="docutils literal notranslate"><span class="pre">None</span></code> values: <code class="docutils literal notranslate"><span class="pre">None</span></code> default values can be used to handle optional parameters.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;no x here&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">test</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+no x here
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Objects">
+<h2>Objects<a class="headerlink" href="#Objects" title="Permalink to this headline">¶</a></h2>
+<p>Example class definition:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">class</span> <span class="nc">Dog</span><span class="p">:</span>                    <span class="c1"># same as &quot;class Dog(object)&quot;</span>
+
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canine&#39;</span>           <span class="c1"># class variable shared by all instances</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span> <span class="c1"># initialization method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>      <span class="c1"># instance variable unique to each instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span> <span class="o">=</span> <span class="p">[]</span>      <span class="c1"># creates a new empty list for each dog</span>
+
+    <span class="k">def</span> <span class="nf">add_trick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trick</span><span class="p">):</span>   <span class="c1"># class method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trick</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>When a class defines an _<em>init_</em>() method, class instantiation automatically invokes _<em>init_</em>() for the newly-created class instance:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">&#39;Fido&#39;</span><span class="p">)</span> <span class="c1"># creates a new instance of the class and assigns this object to the local variable d</span>
+<span class="n">d</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Fido&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">e</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s1">&#39;Buddy&#39;</span><span class="p">)</span> <span class="c1"># creates a new instance of the class and assigns this object to the local variable e</span>
+<span class="n">d</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">&#39;roll over&#39;</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">&#39;play dead&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">d</span><span class="o">.</span><span class="n">tricks</span> <span class="c1"># unique to d</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;roll over&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">e</span><span class="o">.</span><span class="n">tricks</span> <span class="c1"># unique to e</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&#39;play dead&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">d</span><span class="o">.</span><span class="n">kind</span> <span class="c1"># shared by all dogs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;canine&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">e</span><span class="o">.</span><span class="n">kind</span> <span class="c1"># shared by all dogs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;canine&#39;
+</pre></div>
+</div>
+</div>
+<div class="section" id="Inheritance:">
+<h3>Inheritance:<a class="headerlink" href="#Inheritance:" title="Permalink to this headline">¶</a></h3>
+<p>The syntax for a derived class definition looks like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">DerivedClassName(BaseClassName)</span></code></p>
+<p>A derived class can override any methods of its base class or classes, and a method can call the method of a base class with the same name. Example:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>         <span class="c1"># base class</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kind</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kind</span> <span class="o">=</span> <span class="n">kind</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">add_trick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trick</span><span class="p">):</span>   <span class="c1"># class method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tricks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trick</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>   <span class="c1"># derived class</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># override of __init__ base method</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Dog</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;canine&#39;</span><span class="p">)</span> <span class="c1"># call Animal __init__ method with input string</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fido</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span> <span class="c1"># fido is automatically an animal of kind &#39;canine&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fido</span><span class="o">.</span><span class="n">kind</span><span class="p">)</span>
+<span class="n">fido</span><span class="o">.</span><span class="n">add_trick</span><span class="p">(</span><span class="s1">&#39;play dead&#39;</span><span class="p">)</span> <span class="c1"># Dog class can use Animal class</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fido</span><span class="o">.</span><span class="n">tricks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+canine
+[&#39;play dead&#39;]
+</pre></div></div>
+</div>
+<p>Python supports a form of multiple inheritance as well. A class definition with multiple base classes looks like this:</p>
+<p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">DerivedClassName(Base1,</span> <span class="pre">Base2,</span> <span class="pre">Base3):</span></code></p>
+</div>
+<div class="section" id="Private-Variables-and-Methods:">
+<h3>Private Variables and Methods:<a class="headerlink" href="#Private-Variables-and-Methods:" title="Permalink to this headline">¶</a></h3>
+<p>“Private” instance variables that cannot be accessed except from inside an object don’t exist in Python. However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g. _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data member).</p>
+<p>Example of internal class use of private method __update. The user is not meant to use __update, but update. However, __update can be used internally to be called from the __init__ method:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">class</span> <span class="nc">Mapping</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__update</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="n">__update</span> <span class="o">=</span> <span class="n">update</span>   <span class="c1"># private copy of original update() method</span>
+
+<span class="k">class</span> <span class="nc">MappingSubclass</span><span class="p">(</span><span class="n">Mapping</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="c1"># provides new signature for update()</span>
+        <span class="c1"># but does not break __init__()</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">items_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

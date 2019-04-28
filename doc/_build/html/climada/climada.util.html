@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>climada.util package &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="climada.hazard.centroids package" href="climada.hazard.centroids.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="climada.hazard.centroids.html" title="climada.hazard.centroids package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="climada.html" accesskey="U">Software documentation per package</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">climada.util package</a><ul>
+<li><a class="reference internal" href="#module-climada.util.checker">climada.util.checker module</a></li>
+<li><a class="reference internal" href="#module-climada.util.config">climada.util.config module</a></li>
+<li><a class="reference internal" href="#module-climada.util.constants">climada.util.constants module</a></li>
+<li><a class="reference internal" href="#module-climada.util.coordinates">climada.util.coordinates module</a></li>
+<li><a class="reference internal" href="#module-climada.util.files_handler">climada.util.files_handler module</a></li>
+<li><a class="reference internal" href="#module-climada.util.hdf5_handler">climada.util.hdf5_handler module</a></li>
+<li><a class="reference internal" href="#module-climada.util.interpolation">climada.util.interpolation module</a></li>
+<li><a class="reference internal" href="#module-climada.util.plot">climada.util.plot module</a></li>
+<li><a class="reference internal" href="#module-climada.util.save">climada.util.save module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="climada.hazard.centroids.html"
+                        title="previous chapter">climada.hazard.centroids package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/climada/climada.util.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="climada-util-package">
+<h1>climada.util package<a class="headerlink" href="#climada-util-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-climada.util.checker">
+<span id="climada-util-checker-module"></span><h2>climada.util.checker module<a class="headerlink" href="#module-climada.util.checker" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.util.checker.size">
+<code class="descclassname">climada.util.checker.</code><code class="descname">size</code><span class="sig-paren">(</span><em>exp_len</em>, <em>var</em>, <em>var_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/checker.html#size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.checker.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the length of a variable is the expected one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.checker.shape">
+<code class="descclassname">climada.util.checker.</code><code class="descname">shape</code><span class="sig-paren">(</span><em>exp_row</em>, <em>exp_col</em>, <em>var</em>, <em>var_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/checker.html#shape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.checker.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the length of a variable is the expected one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.checker.array_optional">
+<code class="descclassname">climada.util.checker.</code><code class="descname">array_optional</code><span class="sig-paren">(</span><em>exp_len</em>, <em>var</em>, <em>var_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/checker.html#array_optional"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.checker.array_optional" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if array has right size. Warn if array empty. Call check_size.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>exp_len</strong> (<em>str</em>) – expected array size</li>
+<li><strong>var</strong> (<em>np.array</em>) – numpy array to check</li>
+<li><strong>var_name</strong> (<em>str</em>) – name of the variable. Used in error/warning msg</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.checker.array_default">
+<code class="descclassname">climada.util.checker.</code><code class="descname">array_default</code><span class="sig-paren">(</span><em>exp_len</em>, <em>var</em>, <em>var_name</em>, <em>def_val</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/checker.html#array_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.checker.array_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check array has right size. Set default value if empty. Call check_size.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>exp_len</strong> (<em>str</em>) – expected array size</li>
+<li><strong>var</strong> (<em>np.array</em>) – numpy array to check</li>
+<li><strong>var_name</strong> (<em>str</em>) – name of the variable. Used in error/warning msg</li>
+<li><strong>def_val</strong> (<em>np.array</em>) – nump array used as default value</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Filled array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.config">
+<span id="climada-util-config-module"></span><h2>climada.util.config module<a class="headerlink" href="#module-climada.util.config" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.util.config.setup_logging">
+<code class="descclassname">climada.util.config.</code><code class="descname">setup_logging</code><span class="sig-paren">(</span><em>log_level='DEBUG'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/config.html#setup_logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.config.setup_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup logging configuration</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.config.setup_conf_user">
+<code class="descclassname">climada.util.config.</code><code class="descname">setup_conf_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/config.html#setup_conf_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.config.setup_conf_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup climada configuration</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.constants">
+<span id="climada-util-constants-module"></span><h2>climada.util.constants module<a class="headerlink" href="#module-climada.util.constants" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="climada.util.constants.SOURCE_DIR">
+<code class="descclassname">climada.util.constants.</code><code class="descname">SOURCE_DIR</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/climada'</em><a class="headerlink" href="#climada.util.constants.SOURCE_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>climada directory</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.DATA_DIR">
+<code class="descclassname">climada.util.constants.</code><code class="descname">DATA_DIR</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data'</em><a class="headerlink" href="#climada.util.constants.DATA_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Folder containing the data</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.SYSTEM_DIR">
+<code class="descclassname">climada.util.constants.</code><code class="descname">SYSTEM_DIR</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/system'</em><a class="headerlink" href="#climada.util.constants.SYSTEM_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Folder containing the data used internally</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.GLB_CENTROIDS_MAT">
+<code class="descclassname">climada.util.constants.</code><code class="descname">GLB_CENTROIDS_MAT</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/system/GLB_NatID_grid_0360as_adv_2.mat'</em><a class="headerlink" href="#climada.util.constants.GLB_CENTROIDS_MAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Global centroids.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.ENT_TEMPLATE_XLS">
+<code class="descclassname">climada.util.constants.</code><code class="descname">ENT_TEMPLATE_XLS</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/system/entity_template.xlsx'</em><a class="headerlink" href="#climada.util.constants.ENT_TEMPLATE_XLS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entity template in xls format.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.HAZ_DEMO_MAT">
+<code class="descclassname">climada.util.constants.</code><code class="descname">HAZ_DEMO_MAT</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/demo/atl_prob.mat'</em><a class="headerlink" href="#climada.util.constants.HAZ_DEMO_MAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>hurricanes from 1851 to 2011 over Florida with 100 centroids.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Hazard demo from climada in MATLAB</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.HAZ_DEMO_H5">
+<code class="descclassname">climada.util.constants.</code><code class="descname">HAZ_DEMO_H5</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/demo/tc_fl_1975_2011.h5'</em><a class="headerlink" href="#climada.util.constants.HAZ_DEMO_H5" title="Permalink to this definition">¶</a></dt>
+<dd><p>ibtracs from 1975 to 2011 over Florida with 2500 centroids.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">Hazard demo in h5 format</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.EXP_DEMO_H5">
+<code class="descclassname">climada.util.constants.</code><code class="descname">EXP_DEMO_H5</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/demo/exp_demo_today.h5'</em><a class="headerlink" href="#climada.util.constants.EXP_DEMO_H5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exposures over Florida</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.TC_ANDREW_FL">
+<code class="descclassname">climada.util.constants.</code><code class="descname">TC_ANDREW_FL</code><em class="property"> = '/Users/aznarsig/Documents/Python/climada_python/data/demo/ibtracs_global_intp-None_1992230N11325.csv'</em><a class="headerlink" href="#climada.util.constants.TC_ANDREW_FL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tropical cyclone Andrew in Florida</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.ONE_LAT_KM">
+<code class="descclassname">climada.util.constants.</code><code class="descname">ONE_LAT_KM</code><em class="property"> = 111.12</em><a class="headerlink" href="#climada.util.constants.ONE_LAT_KM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean one latitude (in degrees) to km</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.constants.EARTH_RADIUS_KM">
+<code class="descclassname">climada.util.constants.</code><code class="descname">EARTH_RADIUS_KM</code><em class="property"> = 6371</em><a class="headerlink" href="#climada.util.constants.EARTH_RADIUS_KM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Earth radius in km</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.coordinates">
+<span id="climada-util-coordinates-module"></span><h2>climada.util.coordinates module<a class="headerlink" href="#module-climada.util.coordinates" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="climada.util.coordinates.GLOBE_LAND">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">GLOBE_LAND</code><em class="property"> = 'global_country_borders'</em><a class="headerlink" href="#climada.util.coordinates.GLOBE_LAND" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the earth’s country borders shape file generated in function
+get_land_geometry</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.coordinates.GLOBE_COASTLINES">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">GLOBE_COASTLINES</code><em class="property"> = 'global_coastlines'</em><a class="headerlink" href="#climada.util.coordinates.GLOBE_COASTLINES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the earth’s coastlines shape file generated in function
+get_coastlines</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.grid_is_regular">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">grid_is_regular</code><span class="sig-paren">(</span><em>coord</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#grid_is_regular"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.grid_is_regular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if grid is regular.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>coord</strong> (<em>np.array</em>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.get_coastlines">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">get_coastlines</code><span class="sig-paren">(</span><em>exent=None</em>, <em>resolution=110</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#get_coastlines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.get_coastlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get latitudes and longitudes of the coast lines inside extent. All
+earth if no extent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>extent</strong> (<em>tuple, optional</em>) – (min_lon, max_lon, min_lat, max_lat)</li>
+<li><strong>resolution</strong> (<em>float, optional</em>) – 10, 50 or 110. Resolution in m. Default:
+110m, i.e. 1:110.000.000</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">lat (np.array), lon(np.array)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.dist_to_coast">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">dist_to_coast</code><span class="sig-paren">(</span><em>coord_lat</em>, <em>lon=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#dist_to_coast"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.dist_to_coast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comput distance to coast from input points.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>coord_lat</strong> (<em>np.array or tuple or float</em>) –<ul>
+<li><dl class="first docutils">
+<dt>np.array with two columns, first for latitude of each point and</dt>
+<dd>second with longitude.</dd>
+</dl>
+</li>
+<li>np.array with one dimension containing latitudes</li>
+<li>tuple with first value latitude, second longitude</li>
+<li>float with a latitude value</li>
+</ul>
+</li>
+<li><strong>lon</strong> (<em>np.array or float, optional</em>) –<ul>
+<li>np.array with one dimension containing longitudes</li>
+<li>float with a longitude value</li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">np.array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.get_land_geometry">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">get_land_geometry</code><span class="sig-paren">(</span><em>country_names=None</em>, <em>extent=None</em>, <em>resolution=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#get_land_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.get_land_geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get union of all the countries or the provided ones or the points inside
+the extent. If all the countries are selected, write shp file in SYSTEM
+folder which can be directly read in following computations.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>country_names</strong> (<em>list, optional</em>) – list with ISO3 names of countries, e.g
+[‘ZWE’, ‘GBR’, ‘VNM’, ‘UZB’]</li>
+<li><strong>extent</strong> (<em>tuple, optional</em>) – (min_lon, max_lon, min_lat, max_lat)</li>
+<li><strong>resolution</strong> (<em>float, optional</em>) – 10, 50 or 110. Resolution in m. Default:
+10m, i.e. 1:10.000.000</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">shapely.geometry.multipolygon.MultiPolygon</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.coord_on_land">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">coord_on_land</code><span class="sig-paren">(</span><em>lat</em>, <em>lon</em>, <em>land_geom=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#coord_on_land"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.coord_on_land" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if point is on land (True) or water (False) of provided coordinates.
+All globe considered if no input countries.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lat</strong> (<em>np.array</em>) – latitude of points</li>
+<li><strong>lon</strong> (<em>np.array</em>) – longitude of points</li>
+<li><strong>land_geom</strong> (<em>shapely.geometry.multipolygon.MultiPolygon, optional</em>) – profiles of land.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">np.array(bool)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.nat_earth_resolution">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">nat_earth_resolution</code><span class="sig-paren">(</span><em>resolution</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#nat_earth_resolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.nat_earth_resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if resolution is available in Natural Earth. Build string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resolution</strong> (<em>int</em>) – resolution in millions, 110 == 1:110.000.000.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.shapely_to_pyshp">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">shapely_to_pyshp</code><span class="sig-paren">(</span><em>shapely_geom</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#shapely_to_pyshp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.shapely_to_pyshp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shapely geometry to pyshp. Code adapted from
+<a class="reference external" href="https://gis.stackexchange.com/questions/52705/">https://gis.stackexchange.com/questions/52705/</a>
+how-to-write-shapely-geometries-to-shapefiles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shapely_geom</strong> (<em>shapely.geometry</em>) – shapely geometry to convert</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">shapefile._Shape</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.coordinates.get_country_geometries">
+<code class="descclassname">climada.util.coordinates.</code><code class="descname">get_country_geometries</code><span class="sig-paren">(</span><em>country_names=None</em>, <em>extent=None</em>, <em>resolution=10</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/coordinates.html#get_country_geometries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.coordinates.get_country_geometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a geopandas GeoSeries of natural earth multipolygons of the
+specified countries, resp. the countries that lie within the specified
+extent. If no arguments are given, simply returns the whole natural earth
+dataset.
+Take heed: we assume WGS84 as the CRS unless the Natural Earth download
+utility from cartopy starts including the projection information. (They
+are saving a whopping 147 bytes by omitting it.) Same goes for UTF.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>country_names</strong> (<em>list, optional</em>) – list with ISO3 names of countries, e.g
+[‘ZWE’, ‘GBR’, ‘VNM’, ‘UZB’]</li>
+<li><strong>extent</strong> (<em>tuple, optional</em>) – (min_lon, max_lon, min_lat, max_lat) assumed
+to be in the same CRS as the natural earth data.</li>
+<li><strong>resolution</strong> (<em>float, optional</em>) – 10, 50 or 110. Resolution in m. Default:
+10m</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">GeoDataFrame</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.files_handler">
+<span id="climada-util-files-handler-module"></span><h2>climada.util.files_handler module<a class="headerlink" href="#module-climada.util.files_handler" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.util.files_handler.to_list">
+<code class="descclassname">climada.util.files_handler.</code><code class="descname">to_list</code><span class="sig-paren">(</span><em>num_exp</em>, <em>values</em>, <em>val_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/files_handler.html#to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.files_handler.to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check size and transform to list if necessary. If size is one, build
+a list with num_exp repeated values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>num_exp</strong> (<em>int</em>) – number of expect list elements</li>
+<li><strong>values</strong> (<em>object or list(object)</em>) – values to check and transform</li>
+<li><strong>val_name</strong> (<em>str</em>) – name of the variable values</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.files_handler.get_file_names">
+<code class="descclassname">climada.util.files_handler.</code><code class="descname">get_file_names</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/files_handler.html#get_file_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.files_handler.get_file_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of files contained. Supports globbing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>file_name</strong> (<em>str or list(str)</em>) – Either a single string or a list of
+strings that are either</p>
+<blockquote>
+<div><ul class="simple">
+<li>a file path</li>
+<li>or the path of the folder containing the files</li>
+<li>or a globbing pattern.</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.hdf5_handler">
+<span id="climada-util-hdf5-handler-module"></span><h2>climada.util.hdf5_handler module<a class="headerlink" href="#module-climada.util.hdf5_handler" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.util.hdf5_handler.read">
+<code class="descclassname">climada.util.hdf5_handler.</code><code class="descname">read</code><span class="sig-paren">(</span><em>file_name</em>, <em>with_refs=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/hdf5_handler.html#read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.hdf5_handler.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a hdf5 data structure from a file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_name</strong> – file to load</li>
+<li><strong>with_refs</strong> – enable loading of the references. Default is unset,
+since it increments the execution time considerably.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dictionary structure containing all the variables.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">contents</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Contents contains the Matlab data in a dictionary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">contents</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s2">&quot;/pathto/dummy.mat&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Contents contains the Matlab data and its reference in a
+dictionary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">contents</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s2">&quot;/pathto/dummy.mat&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">Exception while reading</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.hdf5_handler.get_string">
+<code class="descclassname">climada.util.hdf5_handler.</code><code class="descname">get_string</code><span class="sig-paren">(</span><em>array</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/hdf5_handler.html#get_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.hdf5_handler.get_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form string from input array of unisgned integers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>array</strong> – array of integers</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.hdf5_handler.get_str_from_ref">
+<code class="descclassname">climada.util.hdf5_handler.</code><code class="descname">get_str_from_ref</code><span class="sig-paren">(</span><em>file_name</em>, <em>var</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/hdf5_handler.html#get_str_from_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.hdf5_handler.get_str_from_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form string from a reference HDF5 variable of the given file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_name</strong> – matlab file name</li>
+<li><strong>var</strong> – HDF5 reference variable</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.hdf5_handler.get_list_str_from_ref">
+<code class="descclassname">climada.util.hdf5_handler.</code><code class="descname">get_list_str_from_ref</code><span class="sig-paren">(</span><em>file_name</em>, <em>var</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/hdf5_handler.html#get_list_str_from_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.hdf5_handler.get_list_str_from_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form list of strings from a reference HDF5 variable of the given file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_name</strong> – matlab file name</li>
+<li><strong>var</strong> – array of HDF5 reference variable</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.hdf5_handler.get_sparse_csr_mat">
+<code class="descclassname">climada.util.hdf5_handler.</code><code class="descname">get_sparse_csr_mat</code><span class="sig-paren">(</span><em>mat_dict</em>, <em>shape</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/hdf5_handler.html#get_sparse_csr_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.hdf5_handler.get_sparse_csr_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form sparse matrix from input hdf5 sparse matrix data type.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mat_dict</strong> – dictionary containing the sparse matrix information.</li>
+<li><strong>shape</strong> – tuple describing output matrix shape.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">sparse csr matrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.interpolation">
+<span id="climada-util-interpolation-module"></span><h2>climada.util.interpolation module<a class="headerlink" href="#module-climada.util.interpolation" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="climada.util.interpolation.DIST_DEF">
+<code class="descclassname">climada.util.interpolation.</code><code class="descname">DIST_DEF</code><em class="property"> = ['approx', 'haversine']</em><a class="headerlink" href="#climada.util.interpolation.DIST_DEF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distances</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="climada.util.interpolation.METHOD">
+<code class="descclassname">climada.util.interpolation.</code><code class="descname">METHOD</code><em class="property"> = ['NN']</em><a class="headerlink" href="#climada.util.interpolation.METHOD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolation methods</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.util.interpolation.dist_sqr_approx">
+<code class="descclassname">climada.util.interpolation.</code><code class="descname">dist_sqr_approx</code><a class="reference internal" href="../_modules/climada/util/interpolation.html#dist_sqr_approx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.interpolation.dist_sqr_approx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute squared equirectangular approximation distance. Values need
+to be sqrt and multiplicated by ONE_LAT_KM to obtain distance in km.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.interpolation.interpol_index">
+<code class="descclassname">climada.util.interpolation.</code><code class="descname">interpol_index</code><span class="sig-paren">(</span><em>centroids</em>, <em>coordinates</em>, <em>method='NN'</em>, <em>distance='haversine'</em>, <em>threshold=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/interpolation.html#interpol_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.interpolation.interpol_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns for each coordinate the centroids indexes used for
+interpolation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>centroids</strong> (<em>2d array</em>) – First column contains latitude, second
+column contains longitude. Each row is a geographic point</li>
+<li><strong>coordinates</strong> (<em>2d array</em>) – First column contains latitude, second
+column contains longitude. Each row is a geographic point</li>
+<li><strong>method</strong> (<em>str, optional</em>) – interpolation method to use. NN default.</li>
+<li><strong>distance</strong> (<em>str, optional</em>) – distance to use. Haversine default</li>
+<li><strong>threshold</strong> (<em>float</em>) – distance threshold in km over which no neighbor will
+be found. Those are assigned with a -1 index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><dl class="docutils">
+<dt>numpy array with so many rows as coordinates containing the</dt>
+<dd><p class="first last">centroids indexes</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.plot">
+<span id="climada-util-plot-module"></span><h2>climada.util.plot module<a class="headerlink" href="#module-climada.util.plot" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.util.plot.geo_bin_from_array">
+<code class="descclassname">climada.util.plot.</code><code class="descname">geo_bin_from_array</code><span class="sig-paren">(</span><em>array_sub</em>, <em>geo_coord</em>, <em>var_name</em>, <em>title</em>, <em>pop_name=True</em>, <em>buffer=1.0</em>, <em>extend='neither'</em>, <em>proj=&lt;cartopy.crs.PlateCarree object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#geo_bin_from_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.geo_bin_from_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot array values binned over input coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array_sub</strong> (<em>np.array(1d or 2d) or list(np.array)</em>) – Each array (in a row
+or in  the list) are values at each point in corresponding
+geo_coord that are binned in one subplot.</li>
+<li><strong>geo_coord</strong> (<em>2d np.array or list(2d np.array)</em>) – (lat, lon) for each
+point in a row. If one provided, the same grid is used for all
+subplots. Otherwise provide as many as subplots in array_sub.</li>
+<li><strong>var_name</strong> (<em>str or list(str)</em>) – label to be shown in the colorbar. If one
+provided, the same is used for all subplots. Otherwise provide as
+many as subplots in array_sub.</li>
+<li><strong>title</strong> (<em>str or list(str)</em>) – subplot title. If one provided, the same is
+used for all subplots. Otherwise provide as many as subplots in
+array_sub.</li>
+<li><strong>pop_name</strong> (<em>bool, optional</em>) – add names of the populated places.</li>
+<li><strong>buffer</strong> (<em>float, optional</em>) – border to add to coordinates</li>
+<li><strong>extend</strong> (<em>str, optional</em>) – extend border colorbar with arrows.
+[ ‘neither’ | ‘both’ | ‘min’ | ‘max’ ]</li>
+<li><strong>proj</strong> (<em>ccrs</em>) – coordinate reference system used in coordinates</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for hexbin matplotlib function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">matplotlib.figure.Figure, cartopy.mpl.geoaxes.GeoAxesSubplot</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.plot.geo_im_from_array">
+<code class="descclassname">climada.util.plot.</code><code class="descname">geo_im_from_array</code><span class="sig-paren">(</span><em>array_sub</em>, <em>geo_coord</em>, <em>var_name</em>, <em>title</em>, <em>proj=&lt;cartopy.crs.PlateCarree object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#geo_im_from_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.geo_im_from_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Image(s) plot defined in array(s) over input coordinates.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array_sub</strong> (<em>np.array(1d or 2d) or list(np.array)</em>) – Each array (in a row
+or in  the list) are values at each point in corresponding
+geo_coord that are ploted in one subplot.</li>
+<li><strong>geo_coord</strong> (<em>2d np.array or list(2d np.array)</em>) – (lat, lon) for each
+point in a row. If one provided, the same grid is used for all
+subplots. Otherwise provide as many as subplots in array_sub.</li>
+<li><strong>var_name</strong> (<em>str or list(str)</em>) – label to be shown in the colorbar. If one
+provided, the same is used for all subplots. Otherwise provide as
+many as subplots in array_sub.</li>
+<li><strong>title</strong> (<em>str or list(str)</em>) – subplot title. If one provided, the same is
+used for all subplots. Otherwise provide as many as subplots in
+array_sub.</li>
+<li><strong>proj</strong> (<em>ccrs</em>) – coordinate reference system used in coordinates</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for pcolormesh matplotlib function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">matplotlib.figure.Figure, cartopy.mpl.geoaxes.GeoAxesSubplot</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="climada.util.plot.Graph2D">
+<em class="property">class </em><code class="descclassname">climada.util.plot.</code><code class="descname">Graph2D</code><span class="sig-paren">(</span><em>title=''</em>, <em>num_subplots=1</em>, <em>num_row=None</em>, <em>num_col=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>2D graph object. Handles various subplots and curves.</p>
+<dl class="method">
+<dt id="climada.util.plot.Graph2D.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>title=''</em>, <em>num_subplots=1</em>, <em>num_row=None</em>, <em>num_col=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.util.plot.Graph2D.add_subplot">
+<code class="descname">add_subplot</code><span class="sig-paren">(</span><em>xlabel</em>, <em>ylabel</em>, <em>title=''</em>, <em>on_grid=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D.add_subplot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D.add_subplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add subplot to figure.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.util.plot.Graph2D.add_curve">
+<code class="descname">add_curve</code><span class="sig-paren">(</span><em>var_x</em>, <em>var_y</em>, <em>fmt=None</em>, <em>ax_num=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D.add_curve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D.add_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add (x, y) curve to current subplot.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>var_x</strong> (<em>array</em>) – abcissa values</li>
+<li><strong>var_y</strong> (<em>array</em>) – ordinate values</li>
+<li><strong>fmt</strong> (<em>str, optional</em>) – format e.g ‘k–’</li>
+<li><strong>ax_num</strong> (<em>int, optional</em>) – number of axis to plot. Current if None.</li>
+<li><strong>kwargs</strong> (<em>optional</em>) – arguments for plot matplotlib function</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.util.plot.Graph2D.set_x_lim">
+<code class="descname">set_x_lim</code><span class="sig-paren">(</span><em>var_x</em>, <em>ax_num=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D.set_x_lim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D.set_x_lim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set x axis limits from minimum and maximum provided values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>var_x</strong> (<em>array</em>) – abcissa values</li>
+<li><strong>ax_num</strong> (<em>int, optional</em>) – number of axis to plot. Current if None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.util.plot.Graph2D.set_y_lim">
+<code class="descname">set_y_lim</code><span class="sig-paren">(</span><em>var_y</em>, <em>ax_num=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D.set_y_lim"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D.set_y_lim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set y axis limits from minimum and maximum provided values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>var_y</strong> (<em>array</em>) – ordinate values</li>
+<li><strong>ax_num</strong> (<em>int, optional</em>) – number of axis to plot. Current if None.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.util.plot.Graph2D.get_elems">
+<code class="descname">get_elems</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#Graph2D.get_elems"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.Graph2D.get_elems" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return figure and list of all axes (of each subplot).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">matplotlib.figure.Figure, [matplotlib.axes._subplots.AxesSubplot]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.plot.make_map">
+<code class="descclassname">climada.util.plot.</code><code class="descname">make_map</code><span class="sig-paren">(</span><em>num_sub=1</em>, <em>proj=&lt;cartopy.crs.PlateCarree object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#make_map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.make_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create map figure with cartopy.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>num_sub</strong> (<em>int</em>) – number of subplots in figure.</li>
+<li><strong>proj</strong> (<em>cartopy.crs projection, optional</em>) – geographical projection,
+PlateCarree default.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">matplotlib.figure.Figure, np.array(cartopy.mpl.geoaxes.GeoAxesSubplot)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.plot.add_shapes">
+<code class="descclassname">climada.util.plot.</code><code class="descname">add_shapes</code><span class="sig-paren">(</span><em>axis</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#add_shapes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.add_shapes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overlay Earth’s countries coastlines to matplotlib.pyplot axis.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>axis</strong> (<em>cartopy.mpl.geoaxes.GeoAxesSubplot</em>) – cartopy axis.</li>
+<li><strong>projection</strong> (<em>cartopy.crs projection, optional</em>) – geographical projection,
+PlateCarree default.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.plot.add_populated_places">
+<code class="descclassname">climada.util.plot.</code><code class="descname">add_populated_places</code><span class="sig-paren">(</span><em>axis</em>, <em>extent</em>, <em>proj=&lt;cartopy.crs.PlateCarree object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#add_populated_places"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.add_populated_places" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add city names.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>axis</strong> (<em>cartopy.mpl.geoaxes.GeoAxesSubplot</em>) – cartopy axis.</li>
+<li><strong>extent</strong> (<em>list</em>) – geographical limits [min_lon, max_lon, min_lat, max_lat]</li>
+<li><strong>proj</strong> (<em>cartopy.crs projection, optional</em>) – geographical projection,
+PlateCarree default.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.plot.add_cntry_names">
+<code class="descclassname">climada.util.plot.</code><code class="descname">add_cntry_names</code><span class="sig-paren">(</span><em>axis</em>, <em>extent</em>, <em>proj=&lt;cartopy.crs.PlateCarree object&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#add_cntry_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.add_cntry_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add country names.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>axis</strong> (<em>cartopy.mpl.geoaxes.GeoAxesSubplot</em>) – cartopy axis.</li>
+<li><strong>extent</strong> (<em>list</em>) – geographical limits [min_lon, max_lon, min_lat, max_lat]</li>
+<li><strong>proj</strong> (<em>cartopy.crs projection, optional</em>) – geographical projection,
+PlateCarree default.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="climada.util.plot.add_basemap">
+<code class="descclassname">climada.util.plot.</code><code class="descname">add_basemap</code><span class="sig-paren">(</span><em>axis</em>, <em>zoom</em>, <em>url='http://tile.stamen.com/terrain/tileZ/tileX/tileY.png'</em>, <em>flip=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/plot.html#add_basemap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.plot.add_basemap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add image to given axis. Coordinates need to be in epsg=3857.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>(cartopy.mpl.geoaxes.GeoAxesSubplot)</strong> – plot axis</li>
+<li><strong>zoom</strong> (<em>int, optional</em>) – zoom coefficient used in the satellite image</li>
+<li><strong>url</strong> (<em>str, optional</em>) – image source, e.g. ctx.sources.OSM_C</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.util.save">
+<span id="climada-util-save-module"></span><h2>climada.util.save module<a class="headerlink" href="#module-climada.util.save" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="climada.util.save.save">
+<code class="descclassname">climada.util.save.</code><code class="descname">save</code><span class="sig-paren">(</span><em>out_file_name</em>, <em>var</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/util/save.html#save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.util.save.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save variable with provided file name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>out_file_name</strong> (<em>str</em>) – file name (absolute path or relative to configured
+save_dir)</li>
+<li><strong>var</strong> (<em>object</em>) – variable to save in pickle format</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="climada.hazard.centroids.html" title="climada.hazard.centroids package"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="climada.html" >Software documentation per package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

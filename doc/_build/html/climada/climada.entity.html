@@ -1,0 +1,372 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>climada.entity package &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="climada.entity.disc_rates package" href="climada.entity.disc_rates.html" />
+    <link rel="prev" title="climada.engine package" href="climada.engine.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="climada.entity.disc_rates.html" title="climada.entity.disc_rates package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="climada.engine.html" title="climada.engine package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="climada.html" accesskey="U">Software documentation per package</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">climada.entity package</a><ul>
+<li><a class="reference internal" href="#module-climada.entity.entity_def">climada.entity.entity_def module</a></li>
+<li><a class="reference internal" href="#module-climada.entity.tag">climada.entity.tag module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="climada.engine.html"
+                        title="previous chapter">climada.engine package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="climada.entity.disc_rates.html"
+                        title="next chapter">climada.entity.disc_rates package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/climada/climada.entity.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="climada-entity-package">
+<h1>climada.entity package<a class="headerlink" href="#climada-entity-package" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="climada.entity.disc_rates.html">climada.entity.disc_rates package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.disc_rates.html#module-climada.entity.disc_rates.base">climada.entity.disc_rates.base module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climada.entity.exposures.html">climada.entity.exposures package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.exposures.html#module-climada.entity.exposures.base">climada.entity.exposures.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.exposures.html#module-climada.entity.exposures.black_marble">climada.entity.exposures.black_marble module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.exposures.html#module-climada.entity.exposures.litpop">climada.entity.exposures.litpop module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climada.entity.impact_funcs.html">climada.entity.impact_funcs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.impact_funcs.html#module-climada.entity.impact_funcs.base">climada.entity.impact_funcs.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.impact_funcs.html#module-climada.entity.impact_funcs.impact_func_set">climada.entity.impact_funcs.impact_func_set module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.impact_funcs.html#module-climada.entity.impact_funcs.trop_cyclone">climada.entity.impact_funcs.trop_cyclone module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="climada.entity.measures.html">climada.entity.measures package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.measures.html#module-climada.entity.measures.base">climada.entity.measures.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="climada.entity.measures.html#module-climada.entity.measures.measure_set">climada.entity.measures.measure_set module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="module-climada.entity.entity_def">
+<span id="climada-entity-entity-def-module"></span><h2>climada.entity.entity_def module<a class="headerlink" href="#module-climada.entity.entity_def" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="climada.entity.entity_def.Entity">
+<em class="property">class </em><code class="descclassname">climada.entity.entity_def.</code><code class="descname">Entity</code><a class="reference internal" href="../_modules/climada/entity/entity_def.html#Entity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.entity_def.Entity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Collects exposures, impact functions, measures and discount rates.
+Default values set when empty constructor.</p>
+<dl class="attribute">
+<dt id="climada.entity.entity_def.Entity.exposures">
+<code class="descname">exposures</code><a class="headerlink" href="#climada.entity.entity_def.Entity.exposures" title="Permalink to this definition">¶</a></dt>
+<dd><p>exposures</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="climada.entity.exposures.html#climada.entity.exposures.base.Exposures" title="climada.entity.exposures.base.Exposures">Exposures</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.entity.entity_def.Entity.impact_funcs">
+<code class="descname">impact_funcs</code><a class="headerlink" href="#climada.entity.entity_def.Entity.impact_funcs" title="Permalink to this definition">¶</a></dt>
+<dd><p>impact functions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">ImpactFucs</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.entity.entity_def.Entity.measures">
+<code class="descname">measures</code><a class="headerlink" href="#climada.entity.entity_def.Entity.measures" title="Permalink to this definition">¶</a></dt>
+<dd><p>measures</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="climada.entity.measures.html#climada.entity.measures.measure_set.MeasureSet" title="climada.entity.measures.measure_set.MeasureSet">MeasureSet</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.entity.entity_def.Entity.disc_rates">
+<code class="descname">disc_rates</code><a class="headerlink" href="#climada.entity.entity_def.Entity.disc_rates" title="Permalink to this definition">¶</a></dt>
+<dd><p>discount rates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="climada.entity.disc_rates.html#climada.entity.disc_rates.base.DiscRates" title="climada.entity.disc_rates.base.DiscRates">DiscRates</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.entity.entity_def.Entity.def_file">
+<code class="descname">def_file</code><a class="headerlink" href="#climada.entity.entity_def.Entity.def_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default file from configuration file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.entity_def.Entity.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/entity_def.html#Entity.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.entity_def.Entity.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Empty initializator</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.entity_def.Entity.read_mat">
+<code class="descname">read_mat</code><span class="sig-paren">(</span><em>file_name</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/entity_def.html#Entity.read_mat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.entity_def.Entity.read_mat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read MATLAB file of climada.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_name</strong> (<em>str, optional</em>) – file name(s) or folder name
+containing the files to read</li>
+<li><strong>description</strong> (<em>str or list(str), optional</em>) – one description of the
+data or a description of each data file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.entity_def.Entity.read_excel">
+<code class="descname">read_excel</code><span class="sig-paren">(</span><em>file_name</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/entity_def.html#Entity.read_excel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.entity_def.Entity.read_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read csv or xls or xlsx file following climada’s template.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_name</strong> (<em>str, optional</em>) – file name(s) or folder name
+containing the files to read</li>
+<li><strong>description</strong> (<em>str or list(str), optional</em>) – one description of the
+data or a description of each data file</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.entity_def.Entity.write_excel">
+<code class="descname">write_excel</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/entity_def.html#Entity.write_excel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.entity_def.Entity.write_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write excel file following template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.entity_def.Entity.check">
+<code class="descname">check</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/entity_def.html#Entity.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.entity_def.Entity.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check instance attributes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-climada.entity.tag">
+<span id="climada-entity-tag-module"></span><h2>climada.entity.tag module<a class="headerlink" href="#module-climada.entity.tag" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="climada.entity.tag.Tag">
+<em class="property">class </em><code class="descclassname">climada.entity.tag.</code><code class="descname">Tag</code><span class="sig-paren">(</span><em>file_name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/tag.html#Tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.tag.Tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Source data tag for Exposures, DiscRates, ImpactFuncSet, MeasureSet.</p>
+<dl class="attribute">
+<dt id="climada.entity.tag.Tag.file_name">
+<code class="descname">file_name</code><a class="headerlink" href="#climada.entity.tag.Tag.file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of the source file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="climada.entity.tag.Tag.description">
+<code class="descname">description</code><a class="headerlink" href="#climada.entity.tag.Tag.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>description of the data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.tag.Tag.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>file_name=''</em>, <em>description=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/tag.html#Tag.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.tag.Tag.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize values.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>file_name</strong> (<em>str, optional</em>) – file name to read</li>
+<li><strong>description</strong> (<em>str, optional</em>) – description of the data</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="climada.entity.tag.Tag.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>tag</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/climada/entity/tag.html#Tag.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#climada.entity.tag.Tag.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append input Tag instance information to current Tag.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="climada.entity.disc_rates.html" title="climada.entity.disc_rates package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="climada.engine.html" title="climada.engine package"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="climada.html" >Software documentation per package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

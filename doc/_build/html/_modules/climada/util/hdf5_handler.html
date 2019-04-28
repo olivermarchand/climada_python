@@ -1,0 +1,232 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>climada.util.hdf5_handler &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for climada.util.hdf5_handler</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file is part of CLIMADA.</span>
+
+<span class="sd">Copyright (C) 2017 ETH Zurich, CLIMADA contributors listed in AUTHORS.</span>
+
+<span class="sd">CLIMADA is free software: you can redistribute it and/or modify it under the</span>
+<span class="sd">terms of the GNU Lesser General Public License as published by the Free</span>
+<span class="sd">Software Foundation, version 3.</span>
+
+<span class="sd">CLIMADA is distributed in the hope that it will be useful, but WITHOUT ANY</span>
+<span class="sd">WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A</span>
+<span class="sd">PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.</span>
+
+<span class="sd">You should have received a copy of the GNU Lesser General Public License along</span>
+<span class="sd">with CLIMADA. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">---</span>
+
+<span class="sd">Functionalities to handle HDF5 files. Used for MATLAB files as well.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;get_string&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;get_str_from_ref&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;get_list_str_from_ref&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;get_sparse_csr_mat&#39;</span>
+          <span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">sparse</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+<div class="viewcode-block" id="read"><a class="viewcode-back" href="../../../climada/climada.util.html#climada.util.hdf5_handler.read">[docs]</a><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">with_refs</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load a hdf5 data structure from a file.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            file_name: file to load</span>
+<span class="sd">            with_refs: enable loading of the references. Default is unset,</span>
+<span class="sd">                since it increments the execution time considerably.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            contents: dictionary structure containing all the variables.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            Contents contains the Matlab data in a dictionary.</span>
+
+<span class="sd">            &gt;&gt;&gt; contents = read(&quot;/pathto/dummy.mat&quot;)</span>
+
+<span class="sd">            Contents contains the Matlab data and its reference in a</span>
+<span class="sd">            dictionary.</span>
+
+<span class="sd">            &gt;&gt;&gt; contents = read(&quot;/pathto/dummy.mat&quot;, True)</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            Exception while reading</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get_group</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Recursive function to get variables from a group.&#39;&#39;&#39;</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">h5py</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+                <span class="n">contents</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">h5py</span><span class="o">.</span><span class="n">Group</span><span class="p">):</span>
+                <span class="c1"># it is a group, so call self recursively</span>
+                <span class="k">if</span> <span class="n">with_refs</span> <span class="ow">or</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;#refs#&quot;</span><span class="p">:</span>
+                    <span class="n">contents</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="c1"># other objects such as links are ignored</span>
+        <span class="k">return</span> <span class="n">contents</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">contents</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Invalid file: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_string"><a class="viewcode-back" href="../../../climada/climada.util.html#climada.util.hdf5_handler.get_string">[docs]</a><span class="k">def</span> <span class="nf">get_string</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form string from input array of unisgned integers.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            array: array of integers</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">array</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_str_from_ref"><a class="viewcode-back" href="../../../climada/climada.util.html#climada.util.hdf5_handler.get_str_from_ref">[docs]</a><span class="k">def</span> <span class="nf">get_str_from_ref</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form string from a reference HDF5 variable of the given file.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            file_name: matlab file name</span>
+<span class="sd">            var: HDF5 reference variable</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="n">var</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">get_string</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_list_str_from_ref"><a class="viewcode-back" href="../../../climada/climada.util.html#climada.util.hdf5_handler.get_list_str_from_ref">[docs]</a><span class="k">def</span> <span class="nf">get_list_str_from_ref</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form list of strings from a reference HDF5 variable of the given file.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            file_name: matlab file name</span>
+<span class="sd">            var: array of HDF5 reference variable</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">var</span><span class="p">:</span>
+        <span class="n">name_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">get_string</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]][:])</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">name_list</span></div>
+
+<div class="viewcode-block" id="get_sparse_csr_mat"><a class="viewcode-back" href="../../../climada/climada.util.html#climada.util.hdf5_handler.get_sparse_csr_mat">[docs]</a><span class="k">def</span> <span class="nf">get_sparse_csr_mat</span><span class="p">(</span><span class="n">mat_dict</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Form sparse matrix from input hdf5 sparse matrix data type.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            mat_dict: dictionary containing the sparse matrix information.</span>
+<span class="sd">            shape: tuple describing output matrix shape.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            sparse csr matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check if input has all the necessary data of a sparse matrix</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;data&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mat_dict</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="s1">&#39;ir&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mat_dict</span><span class="p">)</span> <span class="ow">or</span> \
+    <span class="p">(</span><span class="s1">&#39;jc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mat_dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Input data is not a sparse matrix.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csc_matrix</span><span class="p">((</span><span class="n">mat_dict</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">mat_dict</span><span class="p">[</span><span class="s1">&#39;ir&#39;</span><span class="p">],</span> \
+                              <span class="n">mat_dict</span><span class="p">[</span><span class="s1">&#39;jc&#39;</span><span class="p">]),</span> <span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

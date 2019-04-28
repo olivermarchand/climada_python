@@ -1,0 +1,439 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>climada.entity.measures.base &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../../../../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for climada.entity.measures.base</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This file is part of CLIMADA.</span>
+
+<span class="sd">Copyright (C) 2017 ETH Zurich, CLIMADA contributors listed in AUTHORS.</span>
+
+<span class="sd">CLIMADA is free software: you can redistribute it and/or modify it under the</span>
+<span class="sd">terms of the GNU Lesser General Public License as published by the Free</span>
+<span class="sd">Software Foundation, version 3.</span>
+
+<span class="sd">CLIMADA is distributed in the hope that it will be useful, but WITHOUT ANY</span>
+<span class="sd">WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A</span>
+<span class="sd">PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more details.</span>
+
+<span class="sd">You should have received a copy of the GNU Lesser General Public License along</span>
+<span class="sd">with CLIMADA. If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">---</span>
+
+<span class="sd">Define Measure class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Measure&#39;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">climada.entity.exposures.base</span> <span class="k">import</span> <span class="n">Exposures</span><span class="p">,</span> <span class="n">INDICATOR_IF</span><span class="p">,</span> <span class="n">INDICATOR_CENTR</span>
+<span class="kn">import</span> <span class="nn">climada.util.checker</span> <span class="k">as</span> <span class="nn">check</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">IF_ID_FACT</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="sd">&quot;&quot;&quot; Factor internally used as id for impact functions when region selected.&quot;&quot;&quot;</span>
+
+<span class="n">NULL_STR</span> <span class="o">=</span> <span class="s1">&#39;nil&#39;</span>
+<span class="sd">&quot;&quot;&quot; String considered as no path in measures exposures_set and hazard_set or</span>
+<span class="sd">no string in imp_fun_map&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Measure"><a class="viewcode-back" href="../../../../climada/climada.entity.measures.html#climada.entity.measures.base.Measure">[docs]</a><span class="k">class</span> <span class="nc">Measure</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Contains the definition of one measure.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        name (str): name of the action</span>
+<span class="sd">        haz_type (str): related hazard type (peril), e.g. TC</span>
+<span class="sd">        color_rgb (np.array): integer array of size 3. Gives color code of</span>
+<span class="sd">            this measure in RGB</span>
+<span class="sd">        cost (float): discounted cost (in same units as assets)</span>
+<span class="sd">        hazard_set (str): file name of hazard to use (in h5 format)</span>
+<span class="sd">        hazard_freq_cutoff (float): hazard frequency cutoff</span>
+<span class="sd">        exposure_set (str): file name of exposure to use (in h5 format)</span>
+<span class="sd">        imp_fun_map (str): change of impact function id of exposures, e.g. &#39;1to3&#39;</span>
+<span class="sd">        hazard_inten_imp (tuple): parameter a and b of hazard intensity change</span>
+<span class="sd">        mdd_impact (tuple): parameter a and b of the impact over the mean</span>
+<span class="sd">            damage degree</span>
+<span class="sd">        paa_impact (tuple): parameter a and b of the impact over the</span>
+<span class="sd">            percentage of affected assets</span>
+<span class="sd">        exp_region_id (int): region id of the selected exposures to consider ALL</span>
+<span class="sd">            the previous parameters</span>
+<span class="sd">        risk_transf_attach (float): risk transfer attachment</span>
+<span class="sd">        risk_transf_cover (float): risk transfer cover</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Measure.__init__"><a class="viewcode-back" href="../../../../climada/climada.entity.measures.html#climada.entity.measures.base.Measure.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Empty initialization.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color_rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># related to change in hazard</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hazard_set</span> <span class="o">=</span> <span class="n">NULL_STR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hazard_freq_cutoff</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># related to change in exposures</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exposures_set</span> <span class="o">=</span> <span class="n">NULL_STR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span> <span class="o">=</span> <span class="n">NULL_STR</span> <span class="c1"># ids of impact functions to change e.g. 1to10</span>
+
+        <span class="c1"># related to change in impact functions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hazard_inten_imp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># parameter a and b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mdd_impact</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># parameter a and b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paa_impact</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># parameter a and b</span>
+
+        <span class="c1"># related to change in region</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exp_region_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># risk transfer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">risk_transf_attach</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">risk_transf_cover</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="Measure.check"><a class="viewcode-back" href="../../../../climada/climada.entity.measures.html#climada.entity.measures.base.Measure.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Check consistent instance data.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">check</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color_rgb</span><span class="p">,</span> <span class="s1">&#39;Measure.color_rgb&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">check</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color_rgb</span><span class="p">,</span> <span class="s1">&#39;Measure.color_rgb&#39;</span><span class="p">)</span>
+        <span class="n">check</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hazard_inten_imp</span><span class="p">,</span> <span class="s1">&#39;Measure.hazard_inten_imp&#39;</span><span class="p">)</span>
+        <span class="n">check</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdd_impact</span><span class="p">,</span> <span class="s1">&#39;Measure.mdd_impact&#39;</span><span class="p">)</span>
+        <span class="n">check</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">paa_impact</span><span class="p">,</span> <span class="s1">&#39;Measure.paa_impact&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Measure.calc_impact"><a class="viewcode-back" href="../../../../climada/climada.entity.measures.html#climada.entity.measures.base.Measure.calc_impact">[docs]</a>    <span class="k">def</span> <span class="nf">calc_impact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exposures</span><span class="p">,</span> <span class="n">imp_fun_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply measure and compute impact and risk transfer of measure</span>
+<span class="sd">        implemented over inputs.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            exposures (Exposures): exposures instance</span>
+<span class="sd">            imp_fun_set (ImpactFuncSet): impact functions instance</span>
+<span class="sd">            hazard (Hazard): hazard instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Impact, float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">exposures</span><span class="p">,</span> <span class="n">imp_fun_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calc_impact</span><span class="p">(</span><span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Measure.apply"><a class="viewcode-back" href="../../../../climada/climada.entity.measures.html#climada.entity.measures.base.Measure.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exposures</span><span class="p">,</span> <span class="n">imp_fun_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Implement measure with all its defined parameters.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            exposures (Exposures): exposures instance</span>
+<span class="sd">            imp_fun_set (ImpactFuncSet): impact functions instance</span>
+<span class="sd">            hazard (Hazard): hazard instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Exposures, ImpactFuncSet, Hazard</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># change hazard</span>
+        <span class="n">new_haz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_all_hazard</span><span class="p">(</span><span class="n">hazard</span><span class="p">)</span>
+        <span class="c1"># change exposures</span>
+        <span class="n">new_exp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_all_exposures</span><span class="p">(</span><span class="n">exposures</span><span class="p">)</span>
+        <span class="n">new_exp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_exposures_if</span><span class="p">(</span><span class="n">new_exp</span><span class="p">)</span>
+        <span class="c1"># change impact functions</span>
+        <span class="n">new_ifs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_imp_func</span><span class="p">(</span><span class="n">imp_fun_set</span><span class="p">)</span>
+        <span class="c1"># cutoff events whose damage happen with high frequency (in region if specified)</span>
+        <span class="n">new_haz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cutoff_hazard_damage</span><span class="p">(</span><span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span><span class="p">)</span>
+        <span class="c1"># apply all previous changes only to the selected exposures</span>
+        <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_exposures</span><span class="p">(</span><span class="n">exposures</span><span class="p">,</span> \
+            <span class="n">imp_fun_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">,</span> <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span></div>
+
+    <span class="k">def</span> <span class="nf">_calc_impact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compute impact and risk transfer of measure implemented over inputs.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            new_exp (Exposures): exposures once measure applied</span>
+<span class="sd">            new_ifs (ImpactFuncSet): impact functions once measure applied</span>
+<span class="sd">            new_haz (Hazard): hazard once measure applied</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Impact, float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">climada.engine.impact</span> <span class="k">import</span> <span class="n">Impact</span>
+        <span class="n">imp</span> <span class="o">=</span> <span class="n">Impact</span><span class="p">()</span>
+        <span class="n">imp</span><span class="o">.</span><span class="n">calc</span><span class="p">(</span><span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span><span class="p">)</span>
+
+        <span class="n">risk_transfer</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">risk_transf_attach</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">risk_transf_cover</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">imp_layer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">at_event</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">risk_transf_attach</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">risk_transf_cover</span><span class="p">)</span>
+            <span class="n">risk_transfer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">imp_layer</span> <span class="o">*</span> <span class="n">imp</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
+            <span class="n">imp</span><span class="o">.</span><span class="n">at_event</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">at_event</span> <span class="o">-</span><span class="n">imp_layer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">imp</span><span class="o">.</span><span class="n">aai_agg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">at_event</span> <span class="o">*</span> <span class="n">imp</span><span class="o">.</span><span class="n">frequency</span><span class="p">)</span>
+            <span class="c1"># expected annual impact per exposure no longer valid</span>
+            <span class="n">imp</span><span class="o">.</span><span class="n">eai_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+
+        <span class="k">return</span> <span class="n">imp</span><span class="p">,</span> <span class="n">risk_transfer</span>
+
+    <span class="k">def</span> <span class="nf">_change_all_hazard</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hazard</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change hazard to provided hazard_set.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            hazard (Hazard): hazard instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Hazard</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hazard_set</span> <span class="o">==</span> <span class="n">NULL_STR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">hazard</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Setting new hazard </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hazard_set</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">climada.hazard.base</span> <span class="k">import</span> <span class="n">Hazard</span>
+        <span class="n">new_haz</span> <span class="o">=</span> <span class="n">Hazard</span><span class="p">(</span><span class="n">hazard</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">haz_type</span><span class="p">)</span>
+        <span class="n">new_haz</span><span class="o">.</span><span class="n">read_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hazard_set</span><span class="p">)</span>
+        <span class="n">new_haz</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">new_haz</span>
+
+    <span class="k">def</span> <span class="nf">_change_all_exposures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exposures</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Change exposures to provided exposures_set.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            exposures (Exposures): exposures instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Exposures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exposures_set</span> <span class="o">==</span> <span class="n">NULL_STR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">exposures</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Setting new exposures </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exposures_set</span><span class="p">)</span>
+        <span class="n">new_exp</span> <span class="o">=</span> <span class="n">Exposures</span><span class="p">()</span>
+        <span class="n">new_exp</span><span class="o">.</span><span class="n">read_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exposures_set</span><span class="p">)</span>
+        <span class="n">new_exp</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">exposures</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">new_exp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> \
+        <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">exposures</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">new_exp</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="ow">or</span> \
+        <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">exposures</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">new_exp</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Exposures locations have changed.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_exp</span>
+
+    <span class="k">def</span> <span class="nf">_change_exposures_if</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exposures</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Change exposures impact functions ids according to imp_fun_map.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            exposures (Exposures): exposures instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span> <span class="o">==</span> <span class="n">NULL_STR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">exposures</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Setting new exposures impact functions</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span><span class="p">)</span>
+        <span class="n">new_exp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">exposures</span><span class="p">)</span>
+        <span class="n">from_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;to&#39;</span><span class="p">)])</span>
+        <span class="n">to_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">imp_fun_map</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;to&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="p">:])</span>
+        <span class="n">exp_change</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">new_exp</span><span class="p">[</span><span class="n">INDICATOR_IF</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="n">from_id</span><span class="p">)</span><span class="o">.</span>\
+            <span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">new_exp</span><span class="p">[</span><span class="n">INDICATOR_IF</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">exp_change</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_id</span>
+        <span class="k">return</span> <span class="n">new_exp</span>
+
+    <span class="k">def</span> <span class="nf">_change_imp_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imp_set</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply measure to impact functions of the same hazard type.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            imp_set (ImpactFuncSet): impact functions to be modified</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ImpactFuncSet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_imp_set</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">imp_set</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">imp_fun</span> <span class="ow">in</span> <span class="n">new_imp_set</span><span class="o">.</span><span class="n">get_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">):</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Transforming impact functions.&#39;</span><span class="p">)</span>
+            <span class="n">imp_fun</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">imp_fun</span><span class="o">.</span><span class="n">intensity</span> <span class="o">*</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">hazard_inten_imp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">hazard_inten_imp</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">imp_fun</span><span class="o">.</span><span class="n">mdd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">imp_fun</span><span class="o">.</span><span class="n">mdd</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">mdd_impact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">mdd_impact</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+            <span class="n">imp_fun</span><span class="o">.</span><span class="n">paa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">imp_fun</span><span class="o">.</span><span class="n">paa</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">paa_impact</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">paa_impact</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.0</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">new_imp_set</span><span class="o">.</span><span class="n">size</span><span class="p">():</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;No impact function of hazard </span><span class="si">%s</span><span class="s1"> found.&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_imp_set</span>
+
+    <span class="k">def</span> <span class="nf">_cutoff_hazard_damage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exposures</span><span class="p">,</span> <span class="n">if_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cutoff of hazard events which generate damage with a frequency higher</span>
+<span class="sd">        than hazard_freq_cutoff.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            exposures (Exposures): exposures instance</span>
+<span class="sd">            imp_set (ImpactFuncSet): impact functions instance</span>
+<span class="sd">            hazard (Hazard): hazard instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ImpactFuncSet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hazard_freq_cutoff</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">hazard</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Cutting events whose damage have a frequency &gt; </span><span class="si">%s</span><span class="s1">.&#39;</span><span class="p">,</span>
+                     <span class="bp">self</span><span class="o">.</span><span class="n">hazard_freq_cutoff</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">climada.engine.impact</span> <span class="k">import</span> <span class="n">Impact</span>
+        <span class="n">imp</span> <span class="o">=</span> <span class="n">Impact</span><span class="p">()</span>
+        <span class="n">exp_imp</span> <span class="o">=</span> <span class="n">exposures</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_region_id</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># compute impact only in selected region</span>
+            <span class="n">exp_imp</span> <span class="o">=</span> <span class="n">exposures</span><span class="p">[</span><span class="n">exposures</span><span class="o">.</span><span class="n">region_id</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_region_id</span><span class="p">]</span>
+            <span class="n">exp_imp</span> <span class="o">=</span> <span class="n">Exposures</span><span class="p">(</span><span class="n">exp_imp</span><span class="p">)</span>
+        <span class="n">imp</span><span class="o">.</span><span class="n">calc</span><span class="p">(</span><span class="n">exp_imp</span><span class="p">,</span> <span class="n">if_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">)</span>
+
+        <span class="n">new_haz</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">hazard</span><span class="p">)</span>
+        <span class="n">sort_idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">at_event</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">exceed_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">imp</span><span class="o">.</span><span class="n">frequency</span><span class="p">[</span><span class="n">sort_idxs</span><span class="p">])</span>
+        <span class="n">cutoff</span> <span class="o">=</span> <span class="n">exceed_freq</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">hazard_freq_cutoff</span>
+        <span class="n">sel_haz</span> <span class="o">=</span> <span class="n">sort_idxs</span><span class="p">[</span><span class="n">cutoff</span><span class="p">]</span>
+        <span class="n">new_haz_inten</span> <span class="o">=</span> <span class="n">new_haz</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">tolil</span><span class="p">()</span>
+        <span class="n">new_haz_inten</span><span class="p">[</span><span class="n">sel_haz</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sel_haz</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">new_haz</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">new_haz</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="n">new_haz_inten</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">new_haz</span>
+
+    <span class="k">def</span> <span class="nf">_filter_exposures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exposures</span><span class="p">,</span> <span class="n">imp_set</span><span class="p">,</span> <span class="n">hazard</span><span class="p">,</span> <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span>
+                          <span class="n">new_haz</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Incorporate changes of new elements to previous ones only for the</span>
+<span class="sd">        selected exp_region_id. If exp_region_id is -1, all new changes</span>
+<span class="sd">        will be accepted.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            exposures (Exposures): old exposures instance</span>
+<span class="sd">            imp_set (ImpactFuncSet): old impact functions instance</span>
+<span class="sd">            hazard (Hazard): old hazard instance</span>
+<span class="sd">            new_exp (Exposures): new exposures instance</span>
+<span class="sd">            new_ifs (ImpactFuncSet): new impact functions instance</span>
+<span class="sd">            new_haz (Hazard): new hazard instance</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Exposures, ImpactFuncSet, Hazard</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_region_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span>
+
+        <span class="k">if</span> <span class="n">exposures</span> <span class="ow">is</span> <span class="n">new_exp</span><span class="p">:</span>
+            <span class="n">new_exp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">exposures</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">hazard</span> <span class="ow">is</span> <span class="n">new_haz</span><span class="p">:</span>
+            <span class="n">new_haz</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">hazard</span><span class="p">)</span>
+
+        <span class="n">chg_reg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exp_region_id</span> <span class="o">==</span> <span class="n">exposures</span><span class="o">.</span><span class="n">region_id</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">no_chg_reg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exp_region_id</span> <span class="o">!=</span> <span class="n">exposures</span><span class="o">.</span><span class="n">region_id</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># provide new impact functions ids to changed impact functions</span>
+        <span class="n">fun_ids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">new_ifs</span><span class="o">.</span><span class="n">get_func</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">fun_ids</span><span class="p">:</span>
+            <span class="n">new_ifs</span><span class="o">.</span><span class="n">get_func</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">][</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">key</span> <span class="o">+</span> <span class="n">IF_ID_FACT</span>
+            <span class="n">new_ifs</span><span class="o">.</span><span class="n">get_func</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">][</span><span class="n">key</span> <span class="o">+</span> <span class="n">IF_ID_FACT</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="n">new_ifs</span><span class="o">.</span><span class="n">get_func</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="n">new_exp</span><span class="p">[</span><span class="n">INDICATOR_IF</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">]</span> <span class="o">+=</span> <span class="n">IF_ID_FACT</span>
+        <span class="c1"># collect old impact functions ase well (used by exposures)</span>
+        <span class="n">new_ifs</span><span class="o">.</span><span class="n">get_func</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">imp_set</span><span class="o">.</span><span class="n">get_func</span><span class="p">()[</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">])</span>
+
+        <span class="c1"># concatenate previous and new exposures</span>
+        <span class="n">new_exp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">exposures</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">no_chg_reg</span><span class="p">],</span> <span class="n">new_exp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">chg_reg</span><span class="p">]])</span>
+
+        <span class="c1"># put hazard intensities outside region to previous intensities</span>
+        <span class="n">exposures</span><span class="o">.</span><span class="n">assign_centroids</span><span class="p">(</span><span class="n">hazard</span><span class="p">)</span>
+        <span class="n">centr</span> <span class="o">=</span> <span class="n">exposures</span><span class="p">[</span><span class="n">INDICATOR_CENTR</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">haz_type</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">chg_reg</span><span class="p">]</span>
+        <span class="n">centr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">hazard</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">centr</span><span class="p">))</span>
+        <span class="n">new_haz_inten</span> <span class="o">=</span> <span class="n">new_haz</span><span class="o">.</span><span class="n">intensity</span><span class="o">.</span><span class="n">tolil</span><span class="p">()</span>
+        <span class="n">new_haz_inten</span><span class="p">[:,</span> <span class="n">centr</span><span class="p">]</span> <span class="o">=</span> <span class="n">hazard</span><span class="o">.</span><span class="n">intensity</span><span class="p">[:,</span> <span class="n">centr</span><span class="p">]</span>
+        <span class="n">new_haz</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="n">new_haz_inten</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">new_exp</span><span class="p">,</span> <span class="n">new_ifs</span><span class="p">,</span> <span class="n">new_haz</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../../search.html">search</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

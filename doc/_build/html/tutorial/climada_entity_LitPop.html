@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>LitPop class &#8212; climada 1.2.4-dev documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="../index.html"><h1 style="font-size: 3em;">climada</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">LitPop class</a><ul>
+<li><a class="reference internal" href="#Country-Exposure">Country Exposure</a><ul>
+<li><a class="reference internal" href="#Plotting">Plotting</a></li>
+<li><a class="reference internal" href="#Settings:-fin_mode">Settings: fin_mode</a></li>
+<li><a class="reference internal" href="#Settings:-resolution-(res_arcsec)-and-reference_year">Settings: resolution (res_arcsec) and reference_year</a></li>
+<li><a class="reference internal" href="#Settings:-exponents-of-Lit^mPop^n">Settings: exponents of <span class="math notranslate nohighlight">\(Lit^mPop^n\)</span></a></li>
+<li><a class="reference internal" href="#&nbsp;Multiple-countries">&nbsp;Multiple countries</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Sub-national-(admin-1)-GDP-as-intermediate-downscaling-layer">Sub-national (admin-1) GDP as intermediate downscaling layer</a></li>
+<li><a class="reference internal" href="#Export-Exposure-Data-to-CSV">Export Exposure Data to CSV</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/climada_entity_LitPop.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 7ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="LitPop-class">
+<h1>LitPop class<a class="headerlink" href="#LitPop-class" title="Permalink to this headline">¶</a></h1>
+<p>This class is a data model of economic exposure. It models countries’ gridded exposure by interpolating an macroeconomic indicator through the product of night light intensities and gridded population count for a specific year. Asset value is distributed to the grid proportzional to LitPop. LitPop at each pixel is calculated in the script as:</p>
+<p><span class="math notranslate nohighlight">\(Lit^mPop^n = Lit^m * Pop^n\)</span>, with <span class="math notranslate nohighlight">\(exponents = [m, n] \in \N_0\)</span> (Default values are <span class="math notranslate nohighlight">\(m=n=1\)</span>).</p>
+<p>The night light images used are the following: - year 2012 and 2016: <a class="reference external" href="https://earthobservatory.nasa.gov/Features/NightLights">https://earthobservatory.nasa.gov/Features/NightLights</a> (15 arcsec resolution (~500m))</p>
+<p>The gridded population count data used are the following: - Gridded Population of the World (GPW), v4: Population Count, v4.10, v4.11 or later versions (2000, 2005, 2010, 2015, 2020) <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v4/sets/browse">http://sedac.ciesin.columbia.edu/data/collection/gpw-v4/sets/browse</a> (i.e. <a class="reference external" href="http://sedac.ciesin.org/data/set/gpw-v4-population-count-rev10">http://sedac.ciesin.org/data/set/gpw-v4-population-count-rev10</a> or <a class="reference external" href="http://sedac.ciesin.org/data/set/gpw-v4-population-count-rev11">http://sedac.ciesin.org/data/set/gpw-v4-population-count-rev11</a> etc.)</p>
+<p>Always the GPW file of the year closest to the target year is required. To download GPW data you need to register on the SEDAC website (for free). Then you can access the download site, i.e.: <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-rev11/data-download">http://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-rev11/data-download</a>. There, choose the settings as shown, ticking the box of the years you need: <img alt="Screenshot%202019-04-18%20at%2010.52.04.png" src="data:image/png;base64,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" /> The population data from GWP needs to be downloaded manually as TIFF from this site and placed in
+the system data folder of climada, i.e.: climada_python/data/system/gpw_v4_population_count_rev11_2015_30_sec.tif.</p>
+<p>Direct download links are avilable, also for older versions, i.e.: <a class="reference external" href="http://sedac.ciesin.columbia.edu/downloads/data/gpw-v4/gpw-v4-population-count-rev10/gpw-v4-population-count-rev10_2015_30_sec_tif.zip">http://sedac.ciesin.columbia.edu/downloads/data/gpw-v4/gpw-v4-population-count-rev10/gpw-v4-population-count-rev10_2015_30_sec_tif.zip</a>, or: <a class="reference external" href="http://sedac.ciesin.columbia.edu/downloads/data/gpw-v4/gpw-v4-population-count-rev11/gpw-v4-population-count-rev11_2015_30_sec_tif.zip">http://sedac.ciesin.columbia.edu/downloads/data/gpw-v4/gpw-v4-population-count-rev11/gpw-v4-population-count-rev11_2015_30_sec_tif.zip</a></p>
+<p>All other required data is acquired automatically.</p>
+<p>Available macroeconomic indicators can be selected via the variable fin_mode: - ‘pc’: produced capital (Source: World Bank DataBank), incl. manufactured or built assets such as machinery, equipment, and physical structures (pc is in constant 2014 USD, data is available for the years 1995, 2000, 2005, 2010, 2014). The pc-data is stored in the subfolder <em>data/system/Wealth-Accounts_CSV/</em>. Source: <a class="reference external" href="https://datacatalog.worldbank.org/dataset/wealth-accounting">https://datacatalog.worldbank.org/dataset/wealth-accounting</a> - ‘gdp’: gross-domestic product (Source:
+World Bank) - ‘income_group’: gdp multiplied by country’s income group+1 - ‘nfw’: households’ non-financial wealth (Source: Credit Suisse, of households only) - ‘tw’: households’ total wealth (Source: Credit Suisse, of households only)</p>
+<p>Regarding the GDP (nominal GDP at current USD) and income group values, they are obtained from the <a class="reference external" href="https://data.worldbank.org">World Bank</a> using the <a class="reference external" href="https://pandas-datareader.readthedocs.io/en/latest/remote_data.html">pandas-datareader</a> API. If a value is missing, the value of the closest year is considered. When no values are provided from the World Bank, we use the <a class="reference external" href="https://www.naturalearthdata.com">Natural Earth</a> repository values.</p>
+<p><em>Initiating LitPop():</em></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">LitPop</span></code> class inherits from the <code class="docutils literal notranslate"><span class="pre">`Exposures</span></code> &lt;climada_entity_Exposures.ipynb#Exposures-class&gt;`__ class. It provides a <code class="docutils literal notranslate"><span class="pre">set_country()</span></code> method which enables to compute exposure data for a country using different settings and input data. The first time a nightlight image is used, it is downloaded and stored locally. This might take some time.</p>
+<p><em>NOTE / Downloading existing LitPop exposure data:</em></p>
+<p>Readily computed LitPop exposure data, distributing produced capital of 2014 at a resolution of 30 arcsec can be downloaded from the ETH Research Repository: <a class="reference external" href="https://doi.org/10.3929/ethz-b-000331316">https://doi.org/10.3929/ethz-b-000331316</a>. The dataset contains gridded data for more than 200 countries as CSV files. [These can be imported into Python using the Exposures class, i.e. <em>Exposures(pd.read_csv(file_name))</em>]</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Import required packages:</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+<span class="kn">from</span> <span class="nn">iso3166</span> <span class="kn">import</span> <span class="n">countries</span> <span class="k">as</span> <span class="n">iso_cntry</span>
+
+<span class="kn">from</span> <span class="nn">climada.entity.exposures.litpop</span> <span class="kn">import</span> <span class="n">LitPop</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:30:57,495 - climada - DEBUG - Loading default config file: /Users/aznarsig/Documents/Python/climada_python/climada/conf/defaults.conf
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/aznarsig/anaconda3/envs/climada_env/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+</pre></div></div>
+</div>
+<div class="section" id="Country-Exposure">
+<h2>Country Exposure<a class="headerlink" href="#Country-Exposure" title="Permalink to this headline">¶</a></h2>
+<p>In the following, we will create exposure data sets and plots for a variety of countries, comparing different settings. ### Default Settings</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Initiate a default LitPop exposure entity for Switzerland (ISO3-Code &#39;CHE&#39;):</span>
+<span class="n">ent</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="s1">&#39;CHE&#39;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot; In case you encounter an error here, because the GPW data is missing: The gridded population count data used are the following:</span>
+<span class="sd">- Gridded Population of the World (GPW), v4: Population Count, v4.10 or later (2000, 2005, 2010, 2015, 2020).</span>
+<span class="sd">http://sedac.ciesin.columbia.edu/data/collection/gpw-v4/sets/browse</span>
+<span class="sd">The population data from GWP needs to be downloaded manually as TIFF</span>
+<span class="sd">from this site and placed in the system data folder of climada,</span>
+<span class="sd">i.e.: climada_python/data/system/gpw_v4_population_count_rev10_2015_30_sec.tif</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:31:02,072 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 30.0 arcsec.
+2019-03-29 18:31:14,023 - climada.entity.exposures.gpw_import - INFO - Reference year: 2016. Using nearest available year for GWP population data: 2015
+2019-03-29 18:31:23,869 - climada.util.finance - INFO - GDP CHE 2014: 7.092e+11.
+2019-03-29 18:31:24,319 - climada.util.finance - INFO - GDP CHE 2016: 6.687e+11.
+2019-03-29 18:31:25,221 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 26 s
+2019-03-29 18:31:25,222 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:31:25,223 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:31:25,223 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:31:25,224 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:31:25,225 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:31:25,226 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:31:25,226 - climada.entity.exposures.base - INFO - geometry not set.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39; In case you encounter an error here, because the GPW data is missing: The gridded population count data used are the following:\n- Gridded Population of the World (GPW), v4: Population Count, v4.10 (2000, 2005, 2010, 2015, 2020).\nhttp://sedac.ciesin.org/data/set/gpw-v4-population-count-rev10\nThe population data from GWP needs to be downloaded manually as TIFF\nfrom this site and placed in the system data folder of climada,\ni.e.: climada_python/data/system/gpw_v4_population_count_rev10_2015_30_sec.tif\n&#39;
+</pre></div>
+</div>
+</div>
+<div class="section" id="Plotting">
+<h3>Plotting<a class="headerlink" href="#Plotting" title="Permalink to this headline">¶</a></h3>
+<p>The exposure entity was initiated using the default setting, i.e. a resolution of 30 arcsec and produced capital ‘pc’ as total asset value, using the exponents <span class="math notranslate nohighlight">\([1, 1]\)</span>.</p>
+<p>If the init worked, we can now plot a map of Switzerland’s exposure. We can get a good impression of the exposure distribution in Switzerland by comparing plots with linear and log-normal colormaps:</p>
+<p>(please refer to the exposure tutorial <em>climada_entity_Exposures.ipynb</em> for more info on the visualization of exposure data.)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ent</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="c1"># plot exposure with linear colormap and major towns (pop_name=True):</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">pop_name</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="c1"># plot exposure with log-normal colormap:</span>
+<span class="n">norm</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">LogNorm</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">4.0e9</span><span class="p">)</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:31:25,245 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(&lt;Figure size 648x936 with 2 Axes&gt;,
+ array([[&lt;cartopy.mpl.geoaxes.GeoAxesSubplot object at 0x1a19b51b38&gt;]],
+       dtype=object))
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_5_2.png" src="../_images/tutorial_climada_entity_LitPop_5_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_5_3.png" src="../_images/tutorial_climada_entity_LitPop_5_3.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Settings:-fin_mode">
+<h3>Settings: fin_mode<a class="headerlink" href="#Settings:-fin_mode" title="Permalink to this headline">¶</a></h3>
+<p>Instead on produced capital, we can also downscale other available macroeconomic indicators as estimates of asset value. The indicator can be set via the variable fin_mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;pc&#39;</span><span class="p">:</span> <span class="n">produced</span> <span class="n">capital</span> <span class="p">(</span><span class="n">Source</span><span class="p">:</span> <span class="n">World</span> <span class="n">Bank</span> <span class="n">DataBank</span><span class="p">),</span> <span class="n">incl</span><span class="o">.</span> <span class="n">manufactured</span> <span class="ow">or</span> <span class="n">built</span> <span class="n">assets</span> <span class="n">such</span> <span class="k">as</span> <span class="n">machinery</span><span class="p">,</span> <span class="n">equipment</span><span class="p">,</span> <span class="ow">and</span> <span class="n">physical</span> <span class="n">structures</span> <span class="p">(</span><span class="n">pc</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">constant</span> <span class="mi">2014</span><span class="o">-</span><span class="n">USD</span><span class="p">,</span> <span class="n">data</span> <span class="n">available</span> <span class="k">for</span> <span class="n">the</span> <span class="n">years</span> <span class="mi">1995</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2014</span><span class="p">)</span>
+<span class="s1">&#39;gdp&#39;</span><span class="p">:</span> <span class="n">gross</span><span class="o">-</span><span class="n">domestic</span> <span class="n">product</span> <span class="p">(</span><span class="n">Source</span><span class="p">:</span> <span class="n">World</span> <span class="n">Bank</span><span class="p">)</span>
+<span class="s1">&#39;income_group&#39;</span><span class="p">:</span> <span class="n">gdp</span> <span class="n">multiplied</span> <span class="n">by</span> <span class="n">country</span><span class="s1">&#39;s income group+1</span>
+<span class="s1">&#39;nfw&#39;</span><span class="p">:</span> <span class="n">households</span><span class="s1">&#39; non-financial wealth (Source: Credit Suisse, of households only)</span>
+<span class="s1">&#39;tw&#39;</span><span class="p">:</span> <span class="n">households</span><span class="s1">&#39; total wealth (Source: Credit Suisse, of households only)</span>
+</pre></div>
+</div>
+<p>Let’s initiate the entity for Switzerland with the financial mode “income_group”:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Initiate a default LitPop exposure entity for Switzerland (ISO3-Code &#39;CHE&#39;):</span>
+
+<span class="n">ent</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="s1">&#39;CHE&#39;</span><span class="p">,</span> <span class="n">fin_mode</span><span class="o">=</span><span class="s1">&#39;income_group&#39;</span><span class="p">)</span> <span class="c1"># try other fin_modes: &#39;gdp&#39;, &#39;nfw&#39;, &#39;pc&#39;</span>
+<span class="c1"># plot exposure:</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">pop_name</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:31:43,970 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 30.0 arcsec.
+2019-03-29 18:31:56,096 - climada.entity.exposures.gpw_import - INFO - Reference year: 2016. Using nearest available year for GWP population data: 2015
+2019-03-29 18:32:05,819 - climada.util.finance - INFO - GDP CHE 2016: 6.687e+11.
+2019-03-29 18:32:05,885 - climada.util.finance - INFO - Income group CHE 2016: 4.
+2019-03-29 18:32:06,752 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 25 s
+2019-03-29 18:32:06,753 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:32:06,753 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:32:06,754 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:32:06,754 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:32:06,755 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:32:06,756 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:32:06,757 - climada.entity.exposures.base - INFO - geometry not set.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(&lt;Figure size 648x936 with 2 Axes&gt;,
+ array([[&lt;cartopy.mpl.geoaxes.GeoAxesSubplot object at 0x1a19e14a58&gt;]],
+       dtype=object))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_7_2.png" src="../_images/tutorial_climada_entity_LitPop_7_2.png" />
+</div>
+</div>
+<p>This map shows like the default one above, the only difference is the absolute value per pixel: Note that the range of the color scale has changed because the total asset value estimated with the income_group mode is larger than produced capital stock.</p>
+</div>
+<div class="section" id="Settings:-resolution-(res_arcsec)-and-reference_year">
+<h3>Settings: resolution (res_arcsec) and reference_year<a class="headerlink" href="#Settings:-resolution-(res_arcsec)-and-reference_year" title="Permalink to this headline">¶</a></h3>
+<p>We can also change the resolution in arc seconds to one of these values: 30, 60, 120, 300, 600, 3600.</p>
+<p><span class="math notranslate nohighlight">\(30 arcsec \approx 1 km\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(3600 arcsec = 1\degree \approx 110 km\)</span>.</p>
+<p>Additionally, we can change the year our exposure is supposed to represent. For this, nightlight and population data are used that are closest to the requested years. Macroeconomic indicators like produced capital are interpolated from available data or scaled proportional to GDP.</p>
+<p>Let’s estimate a produced capital exposure map for Switzerland in 2017 with a resolution of 300 arcsec:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ent</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="s1">&#39;CHE&#39;</span><span class="p">,</span> <span class="n">fin_mode</span><span class="o">=</span><span class="s1">&#39;pc&#39;</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">reference_year</span><span class="o">=</span><span class="mi">2017</span><span class="p">)</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="c1"># plot exposure with larger line width for better visibility:</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="c1"># Instead of linewight, the gridsize can be adjusted for better visibility (low values --&gt; big markers).</span>
+<span class="c1"># Warning: If gridsize is changed, the plot doesn&#39;t reflect the actual data&#39;s grid anymore,</span>
+<span class="c1"># (please refer to the exposure tutorial *climada_entity_Exposures.ipynb*</span>
+<span class="c1"># for more info on the visualization of exposure data.)</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">gridsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:32:17,460 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 300 arcsec.
+2019-03-29 18:32:20,310 - climada.entity.exposures.gpw_import - INFO - Reference year: 2017. Using nearest available year for GWP population data: 2015
+2019-03-29 18:32:30,347 - climada.util.finance - INFO - GDP CHE 2014: 7.092e+11.
+2019-03-29 18:32:30,863 - climada.util.finance - INFO - GDP CHE 2017: 6.789e+11.
+2019-03-29 18:32:30,982 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 16 s
+2019-03-29 18:32:30,983 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:32:30,984 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:32:30,984 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:32:30,984 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:32:30,985 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:32:30,985 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:32:30,986 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:32:30,988 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(&lt;Figure size 648x936 with 2 Axes&gt;,
+ array([[&lt;cartopy.mpl.geoaxes.GeoAxesSubplot object at 0x1a19db40f0&gt;]],
+       dtype=object))
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_9_2.png" src="../_images/tutorial_climada_entity_LitPop_9_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_9_3.png" src="../_images/tutorial_climada_entity_LitPop_9_3.png" />
+</div>
+</div>
+<p>As can you can read from the logger output above the plot, the following data time steps were used to estimate 2017’s exposure: - GPW Population of 2015 (closest year) - BlackMarble Nightlights of 2016 (closest year) - Produced capital of 2014 (closest year), inflated proportional to the GDP increase from 2014 to 2017. This is an inflation of roughly 4.5% in this case.</p>
+</div>
+<div class="section" id="Settings:-exponents-of-Lit^mPop^n">
+<h3>Settings: exponents of <span class="math notranslate nohighlight">\(Lit^mPop^n\)</span><a class="headerlink" href="#Settings:-exponents-of-Lit^mPop^n" title="Permalink to this headline">¶</a></h3>
+<p>LitPop per pixel is the product of the exponents of nightlights+1 (Lit) and Population count (Pop).</p>
+<p><span class="math notranslate nohighlight">\(Lit^mPop^n = Lit^m * Pop^n\)</span>, with <span class="math notranslate nohighlight">\(exponents = [m, n] \in \N_0\)</span> (Default values are <span class="math notranslate nohighlight">\(m=n=1\)</span>).</p>
+<p>We can also change m and n.</p>
+<p><strong>For countries with badly resolved population data (i.e. Jamaica or Uzbekistan), it can make sense to use nightlights only, i.e. an high exponent of Lit instead of LitPop.</strong> Note that if Pop is not used, <span class="math notranslate nohighlight">\(Lit = nightlights\)</span> instead of <span class="math notranslate nohighlight">\(nightlights+1\)</span>.</p>
+<p>Let’s compare exposure maps for <span class="math notranslate nohighlight">\(LitPop=Lit^1Pop^1\)</span> (default); <span class="math notranslate nohighlight">\(Lit^3\)</span>; and <span class="math notranslate nohighlight">\(Pop^1\)</span> Jamaica at a resolution of 60 arcsec.</p>
+<p>Please execute one cell after the other:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ent</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;JAM&#39;</span> <span class="c1"># Try different countries, i.e. &#39;JAM&#39;, &#39;CHE&#39;, &#39;RWA&#39;, &#39;MEX&#39;</span>
+<span class="n">markersize</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">gridsize</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">buffer_deg</span><span class="o">=.</span><span class="mo">04</span>
+<span class="c1"># The arguments &#39;exponent&#39; is used to set the power with which Lit and Pop go into LitPop:</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">reference_year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">exponents</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># Population only</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">gridsize</span> <span class="o">=</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">markersize</span><span class="p">,</span> <span class="nb">buffer</span><span class="o">=</span><span class="n">buffer_deg</span><span class="p">)</span>
+<span class="c1"># note: buffer_deg adds a buffer around the plotted data to show the whole country</span>
+<span class="sd">&quot;&quot;&quot;Lit^0 * Pop^1&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:32:39,173 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 60 arcsec.
+2019-03-29 18:32:44,426 - climada.entity.exposures.gpw_import - INFO - Reference year: 2014. Using nearest available year for GWP population data: 2015
+2019-03-29 18:32:58,701 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 22 s
+2019-03-29 18:32:58,702 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:32:58,702 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:32:58,703 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:32:58,703 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:32:58,704 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:32:58,705 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:32:58,706 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:32:58,708 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Lit^0 * Pop^1&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_11_2.png" src="../_images/tutorial_climada_entity_LitPop_11_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># JAMAICA:</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">reference_year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">exponents</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="c1"># Nightlights^3 only</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">gridsize</span> <span class="o">=</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">markersize</span><span class="p">,</span> <span class="nb">buffer</span><span class="o">=</span><span class="n">buffer_deg</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Lit^3&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:33:04,167 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 60 arcsec.
+2019-03-29 18:33:09,683 - climada.entity.exposures.gpw_import - INFO - Reference year: 2014. Using nearest available year for GWP population data: 2015
+2019-03-29 18:33:23,936 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 22 s
+2019-03-29 18:33:23,937 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:33:23,938 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:33:23,938 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:33:23,939 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:33:23,939 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:33:23,940 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:33:23,940 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:33:23,947 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Lit^3&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_12_2.png" src="../_images/tutorial_climada_entity_LitPop_12_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">reference_year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">exponents</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Default LitPop [1, 1]</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">gridsize</span> <span class="o">=</span> <span class="n">gridsize</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">markersize</span><span class="p">,</span> <span class="nb">buffer</span><span class="o">=</span><span class="n">buffer_deg</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Lit^1 * Pop^1&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:33:29,398 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 60 arcsec.
+2019-03-29 18:33:34,920 - climada.entity.exposures.gpw_import - INFO - Reference year: 2014. Using nearest available year for GWP population data: 2015
+2019-03-29 18:33:49,726 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 23 s
+2019-03-29 18:33:49,726 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:33:49,727 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:33:49,727 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:33:49,728 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:33:49,728 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:33:49,729 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:33:49,729 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:33:49,732 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Lit^1 * Pop^1&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_13_2.png" src="../_images/tutorial_climada_entity_LitPop_13_2.png" />
+</div>
+</div>
+<p>For <strong>Switzerland</strong>, population is resolved on the 3rd administrative level, with 2538 distinct geographical units. Therefore, the purely population-based map is highly resolved.</p>
+<p>For <strong>Jamaica</strong>, population is only resolved on the 1st administrative level, with only 14 distinct geographical units. Therefore, the purely population-based map shows large monotonous patches. Still, the combination of Lit and Pop results in a concentration of asset value estimates around the capital city Kingston.</p>
+</div>
+<div class="section" id="&nbsp;Multiple-countries">
+<h3>&nbsp;Multiple countries<a class="headerlink" href="# Multiple-countries" title="Permalink to this headline">¶</a></h3>
+<p>Computing LitPop-entities for a list of countries and plot a log-normal exposure map:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Initiate GDP-Entity for Tanzania, Rwanda, and Burundi:</span>
+<span class="n">ent</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">countries_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BDI&#39;</span><span class="p">,</span> <span class="s1">&#39;RWA&#39;</span><span class="p">,</span> <span class="s1">&#39;TZA&#39;</span><span class="p">]</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="n">countries_list</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">reference_year</span><span class="o">=</span><span class="mi">2014</span><span class="p">,</span> <span class="n">fin_mode</span><span class="o">=</span><span class="s1">&#39;gdp&#39;</span><span class="p">)</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:34:00,291 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 120 arcsec.
+2019-03-29 18:34:03,907 - climada.entity.exposures.gpw_import - INFO - Reference year: 2014. Using nearest available year for GWP population data: 2015
+2019-03-29 18:34:15,182 - climada.util.finance - INFO - GDP TZA 2014: 4.822e+10.
+2019-03-29 18:34:15,700 - climada.util.finance - INFO - GDP RWA 2014: 8.017e+09.
+2019-03-29 18:34:16,203 - climada.util.finance - INFO - GDP BDI 2014: 2.706e+09.
+2019-03-29 18:34:17,519 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 25 s
+2019-03-29 18:34:17,520 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:34:17,520 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:34:17,521 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:34:17,521 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:34:17,522 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:34:17,522 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:34:17,523 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:34:17,533 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Plot GDP-Entity for Tanzania, Rwanda, and Burundi:</span>
+<span class="c1"># ent.plot_hexbin(linewidth=2, buffer=.3) # plot using linear colormap</span>
+<span class="c1"># ent.plot_hexbin(linewidth=2, buffer=.3, bins=&#39;log&#39;) # plot using logarithmic colormap</span>
+<span class="n">norm</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">LogNorm</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mf">1.5e2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.5e9</span><span class="p">)</span> <span class="c1"># setting range for the log-normal scale</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="nb">buffer</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span> <span class="c1"># log-normal colormap from USD 150 to USD 1&#39;500&#39;000&#39;000.</span>
+<span class="sd">&quot;&quot;&quot;GDP downscaling with LitPop for Tanzania, Rwanda, and Burundi (2014)&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;GDP downscaling with LitPop for Tanzania, Rwanda, and Burundi (2014)&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_17_1.png" src="../_images/tutorial_climada_entity_LitPop_17_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Sub-national-(admin-1)-GDP-as-intermediate-downscaling-layer">
+<h2>Sub-national (admin-1) GDP as intermediate downscaling layer<a class="headerlink" href="#Sub-national-(admin-1)-GDP-as-intermediate-downscaling-layer" title="Permalink to this headline">¶</a></h2>
+<p>In order to improve downscaling for countries with large regional differences within, a subnational breakdown of GDP can be used as an intermediate downscaling layer wherever available.</p>
+<p>The sub-national (admin-1) GDP-breakdown needs to be added manually as a “.xls”-file to the folder <em>data/system/GSDP/</em> in the CLIMADA-directory. Currently, such data is provided for more than 10 countries, including USA, India, and China.</p>
+<p>The xls-file requires at least the following columns (with names specified in row 1): - State_Province: Names of admin-1 regions, i.e. states, cantons, provinces. Names need to match the naming of admin-1 shapes in the data used by the python package <em>cartopy.io</em> (c.f. <em>shapereader.natural_earth(name=’admin_1_states_provinces’)</em>) - GSDP_ref: value of sub-national GDP to be used (absolute or relative values) - Postal (optional): Alternative identifier of region, if names do not match wioth
+cartopy. Needs to correspond to the Postal-identifiers used in the shapereader of <em>cartopy.io</em>.</p>
+<p>Please note that while admin1-GDP will per definition improve the downscaling of <em>GDP</em>, it might not neccessarily improve the downscaling quality for other asset bases like produced capital (pc).</p>
+<p><em>How To:</em></p>
+<p>The intermediadte downscaling layer can be activated with the option <em>admin1_calc</em>.</p>
+<p>The option <em>adm1_scatter</em> produces a scatter plot to compare the modelled and observed GDP per admin-1 region.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Initiate GDP-Entity for Switzerland, with and without admin1_calc:</span>
+
+<span class="n">ent_adm0</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">ent_adm0</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="s1">&#39;CHE&#39;</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">fin_mode</span><span class="o">=</span><span class="s1">&#39;gdp&#39;</span><span class="p">,</span> <span class="n">admin1_calc</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">ent_adm0</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+
+<span class="n">ent_adm1</span> <span class="o">=</span> <span class="n">LitPop</span><span class="p">()</span>
+<span class="n">ent_adm1</span><span class="o">.</span><span class="n">set_country</span><span class="p">(</span><span class="s1">&#39;CHE&#39;</span><span class="p">,</span> <span class="n">res_arcsec</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">fin_mode</span><span class="o">=</span><span class="s1">&#39;gdp&#39;</span><span class="p">,</span> <span class="n">admin1_calc</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">ent_adm0</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="n">ent_adm0</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="n">ent_adm1</span><span class="o">.</span><span class="n">check</span><span class="p">()</span>
+<span class="n">ent_adm1</span><span class="o">.</span><span class="n">set_geometry_points</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Done.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2019-03-29 18:34:29,197 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 30 arcsec.
+2019-03-29 18:34:40,851 - climada.entity.exposures.gpw_import - INFO - Reference year: 2016. Using nearest available year for GWP population data: 2015
+2019-03-29 18:34:50,681 - climada.util.finance - INFO - GDP CHE 2016: 6.687e+11.
+2019-03-29 18:34:51,518 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 25 s
+2019-03-29 18:34:51,519 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:34:51,520 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:34:51,520 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:34:51,521 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:34:51,521 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:34:51,522 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:34:51,522 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:34:51,529 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+2019-03-29 18:34:54,877 - climada.entity.exposures.litpop - INFO - Generating LitPop data at a resolution of 30 arcsec.
+2019-03-29 18:35:07,938 - climada.entity.exposures.gpw_import - INFO - Reference year: 2016. Using nearest available year for GWP population data: 2015
+2019-03-29 18:35:18,163 - climada.util.finance - INFO - GDP CHE 2016: 6.687e+11.
+2019-03-29 18:35:26,497 - climada.entity.exposures.litpop - INFO - Creating the LitPop exposure took 34 s
+2019-03-29 18:35:26,498 - climada.entity.exposures.base - INFO - crs set to default value: {&#39;init&#39;: &#39;epsg:4326&#39;}
+2019-03-29 18:35:26,498 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:35:26,500 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:35:26,501 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:35:26,503 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:35:26,504 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:35:26,504 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:35:26,516 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:35:26,517 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:35:26,517 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:35:26,518 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:35:26,519 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:35:26,520 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+2019-03-29 18:35:27,155 - climada.entity.exposures.base - INFO - Hazard type not set in if_
+2019-03-29 18:35:27,156 - climada.entity.exposures.base - INFO - centr_ not set.
+2019-03-29 18:35:27,156 - climada.entity.exposures.base - INFO - deductible not set.
+2019-03-29 18:35:27,157 - climada.entity.exposures.base - INFO - cover not set.
+2019-03-29 18:35:27,157 - climada.entity.exposures.base - INFO - category_id not set.
+2019-03-29 18:35:27,158 - climada.entity.exposures.base - INFO - geometry not set.
+2019-03-29 18:35:27,160 - climada.entity.exposures.base - INFO - Setting geometry attribute.
+Done.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Plotting:</span>
+<span class="n">norm</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">LogNorm</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mf">1.5e4</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.5e9</span><span class="p">)</span> <span class="c1"># setting range for the log-normal scale</span>
+<span class="n">ent_adm0</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="nb">buffer</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="n">ent_adm1</span><span class="o">.</span><span class="n">plot_hexbin</span><span class="p">(</span><span class="nb">buffer</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;admin-0: First figure&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;admin-1: Second figure&#39;</span><span class="p">)</span>
+<span class="sd">&#39;&#39;&#39;Note the small differences in eastern Switzerland.&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+admin-0: First figure
+admin-1: Second figure
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Note the small differences in eastern Switzerland.&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_20_2.png" src="../_images/tutorial_climada_entity_LitPop_20_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_climada_entity_LitPop_20_3.png" src="../_images/tutorial_climada_entity_LitPop_20_3.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Export-Exposure-Data-to-CSV">
+<h2>Export Exposure Data to CSV<a class="headerlink" href="#Export-Exposure-Data-to-CSV" title="Permalink to this headline">¶</a></h2>
+<p>The method ent.to_csv() can be used to export any CLIMADA exposure entity to a CSV-file.</p>
+<p>Please refer to the exposure tutorial <em>climada_entity_Exposures.ipynb</em> for more info on the export of exposure data!</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Export LitPop based entity to CSV:</span>
+<span class="c1"># set output path:</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">climada.util.constants</span> <span class="kn">import</span> <span class="n">DATA_DIR</span> <span class="c1"># default CLIMADA-data directory</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">,</span> <span class="s1">&#39;export&#39;</span><span class="p">)</span> <span class="c1"># subfolder export</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">output_path</span><span class="p">):</span> <span class="c1"># create output folder if it does not exist</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+<span class="c1"># set output file path:</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s1">&#39;LitPop_Exposure_Burundi_Tanzania_Rwanda.csv&#39;</span><span class="p">)</span>
+<span class="c1"># Export data:</span>
+<span class="n">ent</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="c1"># display(&#39;Exposure entity exported to&#39; + output_path)</span>
+
+<span class="c1"># Note that the variable &quot;region_id&quot; in the exported CSV file is a number identifying the country, i.e.:</span>
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;Examples for region_id:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;Burundi: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">iso_cntry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;BDI&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">numeric</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;Tanzania: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">iso_cntry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TZA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">numeric</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="s1">&#39;Rwanda: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">iso_cntry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RWA&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">numeric</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Examples for region_id:&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Burundi: 108&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Tanzania: 834&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&#39;Rwanda: 646&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, ETH Zurich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
