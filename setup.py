@@ -55,50 +55,51 @@ setup(
 
     install_requires=[
         'bottleneck==1.3.2',
-        'cartopy==0.17.0', # conda!
+        'cartopy', # conda!
         'cloudpickle', # install_test
         'contextily==1.0rc2',
-        'dask==1.2.2',
+        'dask', # conda
         'descartes',
         #'earthengine_api==0.1.210', # ee, conda!
-        'fiona==1.8.4',
+        'fiona', # conda
         'fsspec>=0.3.6', # < dask
-        'gdal==2.3.3', # conda!
-        'geopandas==0.4.1',
-        'h5py==2.9.0',
+        'gdal', # conda!
+        'geopandas', # conda
+        'h5py', # conda
         'haversine==2.1.1',
         'iso3166==1.0',
-        #'kealib==1.4.7', < fiona
-        'matplotlib==3.1', #
+        'matplotlib', # conda
         'mercantile',
-        #'mpl_toolkits', matplotlib
-        'netCDF4==1.4.2', # conda!
-        'numba==0.43.1', # conda!
-        'numpy==1.16.3', # conda+
+        'multiprocess==0.70.7',
+        'nbconvert==5.5.0',
+        'nbformat==4.4',
+        'netCDF4', # conda!
+        'numba', # conda!
+        'numpy', # conda+
         'overpy==0.4',
-        'pandas==0.24.2',
-        'pandas_datareader==0.7.0',
+        'pandas', # conda
+        'pandas_datareader', # conda
         'pathos==0.2.3',
         'pillow==6.2.2', # PIL 7.0 has a conflict with libtiff 4.0 which is necessary for - at least - Windows
         'pint==0.9',
-        #'pylab', matplotlib
-        'pyproj==1.9.6', #
-        'pyshp', # shapefile
-        'rasterio==1.0.21',
-        'requests==2.21.0', #
+        'ppft==1.6.4.9',
+        'pyproj', # conda
+        'pyshp', # conda
+        'rasterio', # conda
+        'requests', # conda
         'rtree==0.8.3', # < geopandas.overlay
-        'scikit-learn==0.20.3', # sklearn
-        'scipy==1.2.1', # conda+
-        'shapely==1.6.4', #
+        'scikit-learn', # conda
+        'scipy', # conda+
+        'shapely', # conda
         'six==1.13.0', #
         'statsmodels==0.11.1',
         'tables', # < pandas (climada.entity.measures.test.test_base.TestApply)
-        'tabulate==0.8.3',
+        'tabulate', # conda
         'toolz', # < dask
-        'tqdm==4.31.1',
-        'xarray==0.13.0',
+        'tqdm', # conda
+        'xarray', # conda
         'xlrd', # < pandas
-        'xlsxwriter==1.1.7',
+        'xlsxwriter', # conda
         'xmlrunner==1.7.7', # ci tests
     ],
 

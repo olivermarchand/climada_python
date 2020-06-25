@@ -8,3 +8,4 @@ dependencies:
   - sphinx=2.0.1
   - pip:
     - coverage==4.5.3
+    - -e ..
