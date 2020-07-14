@@ -61,7 +61,7 @@ setup(
         'elevation>=1.0.6',
         'fiona>=1.8.4',
         'fsspec>=0.3.6', # < dask
-        'gdal>=2.3.3', # conda!
+        'gdal==3.0.4', # conda!
         'geopandas>=0.4.1',
         'h5py>=2.9.0',
         'haversine>=2.1.1',
