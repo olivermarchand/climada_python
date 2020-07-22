@@ -72,7 +72,7 @@ setup(
         'numba>=0.43.1', # conda!
         'numpy>=1.16.3', # conda+
         'overpy>=0.4',
-        'pandas>=0.24.2',
+        'pandas>=0.23.4',
         'pandas_datareader>=0.7.0',
         'pathos>=0.2.3',
         'pillow>=7.0', # PIL
