@@ -90,7 +90,7 @@ setup(
         'tabulate>=0.8.3',
         'toolz', # < dask
         'tqdm>=4.31.1',
-        'xarray>=0.12.1',
+        'xarray==0.12.1',
         'xlrd', # < pandas
         'xlsxwriter>=1.1.7',
         'xmlrunner>=1.7.7', # ci tests
