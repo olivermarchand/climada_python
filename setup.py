@@ -63,7 +63,7 @@ setup(
         'fsspec>=0.3.6', # < dask
         'gdal==3.0.4', # conda!
         'geopandas>=0.4.1',
-        'h5py>=2.9.0',
+        'h5py>=2.9.0,<3.*',
         'haversine>=2.1.1',
         'iso3166>=1.0',
         'matplotlib>=3.1', #
