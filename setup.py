@@ -63,7 +63,7 @@ setup(
         'gdal==3.0.4',
         'geopandas>=0.5.0',
         'rtree==0.8.3',  # Optional geopandas dependency
-        'h5py>=2.10.0',
+        'h5py>=2.10.0,<3.*',
         'haversine>=2.3.0',
         'nbconvert>=5.6.1',
         'nbformat>=4.4',
