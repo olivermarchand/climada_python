@@ -56,7 +56,7 @@ setup(
     install_requires=[
         'cloudpickle', # install_test
         'contextily>=1.0rc2',
-        'dask>=1.2.2',
+        'dask==1.2.2',
         'descartes',
         'elevation>=1.0.6',
         'fiona>=1.8.4',
