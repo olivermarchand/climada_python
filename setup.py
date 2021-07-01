@@ -57,7 +57,7 @@ setup(
         'bottleneck>=1.3.2',
         'cfgrib>=0.9.7.7',
         'cython>=0.28.2',
-        'dask>=2.25.0',
+        'dask==2.25.0',
         'fsspec>=0.3.3',  # Needed for dask dataframes
         'fiona>=1.8.13.post1',
         'gdal==3.0.4',
